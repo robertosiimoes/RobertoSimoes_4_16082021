@@ -1,0 +1,41 @@
+/*** GENERAL ***/
+
+	:root {
+		--font-default: "DM Sans", Arial, Helvetica, sans-serif;
+		--font-slab: var(--font-default);
+		--modal-duration: 0.8s;
+		--desktop-size: 1300px;
+		--large-tablet-size: 960px;
+		--tablet-size: 768px;
+		--large-mobile-size: 600px;
+		--mobile-size: 475px;
+
+		--red : #ff0000;
+		--red-lighter : #fe142f;
+		--red-pastel : #e54858;
+		--white : #ffffff;
+		--dark : #000000;
+		--dark-lighter : #232323;
+		--dark-overlay : rgba(0, 0, 0, 0.1);
+		--blue : #3876ac;
+		--blue-background: rgba(26, 39, 156, 0.4);
+		--grey-light : #cccccc;
+		--green : #279e7a;
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		display: flex;
+		flex-direction: column;
+		font-family: var(--font-default);
+		font-size: 18px;
+		max-width: var(--desktop-size);
+		margin: 0 auto;
+	}
+
+/*** GENERAL ***/
