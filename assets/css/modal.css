@@ -117,12 +117,24 @@
 		opacity: 0;
 	}
 
+	.bground-open,
+	.bground-close {
+		animation-duration: var(--modal-duration);
+		animation-fill-mode: forwards;
+	}
+
+	.bground-open {
+		animation-name: modalopen;
+	}
+
+	.bground-close {
+		animation-name: modalclose;
+	}
+
 	.content {
 		margin: 5% auto;
 		width: 100%;
 		max-width: 500px;
-		animation-name: modalopen;
-		animation-duration: var(--modal-duration);
 		background: var(--dark-lighter);
 		border-radius: 10px;
 		overflow: hidden;

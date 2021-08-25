@@ -1,12 +1,16 @@
 /*** SCRIPTS MODAL ***/
 
-	// DOM Elements
-	const modalbg = document.querySelector(".bground");
-	const modalBtn = document.querySelectorAll(".modal-btn");
+	/* DOM Elements */
+	const modalContainer = document.querySelector(".bground");
+	const modalBtnOpen = document.querySelectorAll(".modal-btn");
+	const modalBtnClose = document.querySelector(".content .close");
 	const formData = document.querySelectorAll(".formData");
-	const btnCloseModal = document.querySelector(".content .close");
+	const btnSubmit = document.querySelector(".btn-submit");
 
-	// Function to Edit Nav
+	/* Variables */
+	let toggleModal = false;
+
+	/* Function to Edit Nav */
 	function editNav() {
 		var x = document.getElementById("myTopnav");
 		if (x.className === "topnav") {
@@ -16,22 +20,47 @@
 		}
 	}
 
-	// Launch Modal Event
-	modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+	/*
+	* Function for opening/closing modal
+	* If => Close modal
+	* Else => Open modal
+	*/
+	function openOrCloseModal() {
+		
+		if (toggleModal) {
+			modalBtnClose.forEach( (btn) => btn.addEventListener("click", closeModal) );
+		} else {
+			modalBtnOpen.forEach( (btn) => btn.addEventListener("click", launchModal) );
+			toggleModal = !toggleModal;
+		}
+
+	}
 
 	// Lanch Modal Form
 	function launchModal() {
-		modalbg.style.opacity = "1";
-		modalbg.style.transform = "translateY(0)";
+		modalContainer.classList.add("bground-open");
+		modalContainer.classList.remove("bground-close");
 	}
-
-	// Close Modal Event
-	btnCloseModal.forEach((btn) => btn.removeEventListener("click", closeModal));
 
 	// Close Modal Form
 	function closeModal() {
-		modalbg.style.opacity = "0";
-		modalbg.style.transform = "translateY(-100%)";
+		modalContainer.classList.add("bground-close");
+		modalContainer.classList.remove("bground-open");
 	}
+
+	// Launching functions
+	openOrCloseModal();
+
+	
+
+	// Function for form verification before submiting it and submit it in case of conform
+	/*function submitForm() {
+		// Testing if the user clic on submit button
+		if () {
+
+		} else {
+
+		}
+	}*/
 
 /*** SCRIPTS MODAL ***/
