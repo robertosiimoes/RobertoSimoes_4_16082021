@@ -1,16 +1,19 @@
 /*** SCRIPTS MODAL ***/
 
-	/* DOM Elements */
+	// DOM ELEMENTS
 	const modalContainer = document.querySelector(".bground");
 	const modalBtnOpen = document.querySelectorAll(".modal-btn");
 	const modalBtnClose = document.querySelector(".content .close");
+	const formModal = document.querySelector(".form-modal")
 	const formData = document.querySelectorAll(".formData");
 	const btnSubmit = document.querySelector(".btn-submit");
 
-	/* Variables */
+
+	// VARIABLES
 	let toggleModal = false;
 
-	/* Function to Edit Nav */
+
+	// FUNCTION TO EDIT NAV
 	function editNav() {
 		var x = document.getElementById("myTopnav");
 		if (x.className === "topnav") {
@@ -20,11 +23,8 @@
 		}
 	}
 
-	/*
-	* Function for opening/closing modal
-	* If => Close modal
-	* Else => Open modal
-	*/
+
+	// FUNCTION FOR OPENING / CLOSING MODAL
 	function openOrCloseModal() {
 		
 		if (toggleModal) {
@@ -36,31 +36,18 @@
 
 	}
 
-	// Lanch Modal Form
+
+	// OPEN MODAL
 	function launchModal() {
 		modalContainer.classList.add("bground-open");
 		modalContainer.classList.remove("bground-close");
 	}
 
-	// Close Modal Form
+
+	// CLOSE MODAL
 	function closeModal() {
 		modalContainer.classList.add("bground-close");
 		modalContainer.classList.remove("bground-open");
 	}
-
-	// Launching functions
-	openOrCloseModal();
-
-	
-
-	// Function for form verification before submiting it and submit it in case of conform
-	/*function submitForm() {
-		// Testing if the user clic on submit button
-		if () {
-
-		} else {
-
-		}
-	}*/
 
 /*** SCRIPTS MODAL ***/
