@@ -22,15 +22,21 @@
 	}
 
 	.topnav a {
-		float: left;
-		display: block;
 		color: var(--dark);
+		font-family: "DM Sans", sans-serif;
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 24px;
 		text-align: center;
+		text-decoration: none;
+
+		display: block;
+		float: left;
+		
 		padding: 12px 12px;
 		margin: 5px;
-		text-decoration: none;
-		font-size: 20px;
-		font-family: Roboto, sans-serif;
+		
 	}
 
 	.topnav a:hover {
@@ -388,7 +394,7 @@
 	}
 
 	.hero-section {
-		min-height: 93vh;
+		min-height: 657px;
 		border-radius: 10px;
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
