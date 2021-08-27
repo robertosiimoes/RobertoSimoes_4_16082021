@@ -1,50 +1,79 @@
 /*** VALIDATE FORM MODAL ***/
 
-	// DOM ELEMENTS
-	const firstname = document.querySelector("#firstname");
-	const lastname = document.querySelector("#lastname");
-	const mail = document.querySelector("#email");
-	const birthdate = document.querySelector("#birthdate");
-	const quantity = document.querySelector("#quantity");
-	const location1 = document.querySelector("#location1");
-	const location2 = document.querySelector("#location2");
-	const location3 = document.querySelector("#location3");
-	const location4 = document.querySelector("#location4");
-	const location5 = document.querySelector("#location5");
-	const location6 = document.querySelector("#location6");
-	const checkbox1 = document.querySelector("#checkbox1");
-	const checkbox2 = document.querySelector("#checkbox2");
+	/*** DOM ELEMENS ***/
 
+		/*** FORM DATA ***/
 
-	function formFirstname () {
+			const formFirstname = document.querySelector(' .formData[data-input="firstname"] ');
+			const formLastname  = document.querySelector(' .formData[data-input="lastname"] ');
+			const formMail      = document.querySelector(' .formData[data-input="mail"] ');
+			const formBirthdate = document.querySelector(' .formData[data-input="birthdate"] ');
+			const formQuantity  = document.querySelector(' .formData[data-input="quantity"] ');
+			const formLocation1 = document.querySelector(' .formData[data-input="location1"] ');
+			const formLocation2 = document.querySelector(' .formData[data-input="location2"] ');
+			const formLocation3 = document.querySelector(' .formData[data-input="location3"] ');
+			const formLocation4 = document.querySelector(' .formData[data-input="location4"] ');
+			const formLocation5 = document.querySelector(' .formData[data-input="location5"] ');
+			const formLocation6 = document.querySelector(' .formData[data-input="location6"] ');
+			const formCheckbox1 = document.querySelector(' .formData[data-input="checkbox1"] ');
+			const formCheckbox2 = document.querySelector(' .formData[data-input="checkbox2"] ');
+
+		/*** FORM DATA ***/
+
+		/*** INPUTS ***/
+
+			const firstname = document.querySelector("#firstname");
+			const lastname  = document.querySelector("#lastname");
+			const mail      = document.querySelector("#email");
+			const birthdate = document.querySelector("#birthdate");
+			const quantity  = document.querySelector("#quantity");
+			const location1 = document.querySelector("#location1");
+			const location2 = document.querySelector("#location2");
+			const location3 = document.querySelector("#location3");
+			const location4 = document.querySelector("#location4");
+			const location5 = document.querySelector("#location5");
+			const location6 = document.querySelector("#location6");
+			const checkbox1 = document.querySelector("#checkbox1");
+			const checkbox2 = document.querySelector("#checkbox2");
+
+		/*** INPUTS ***/
+	
+	/*** DOM ELEMENS ***/
+
+	function verifyFirstname () {
 
 		const inputEmpty = "Le champ est vide, veuillez entrer votre prénom";
 		const inputNotValid = "Le champ Prénom doit avoir un minimum de 2 caractères";
+		const inputValid = "Le champ est bien rempli";
+		let firstnameValue = parseInt(firstname.value.trim().length);
+		let firstnameWord = toString(firstname.value);
+		//console.log(firstname.value, typeof firstname.value);
+		formFirstname.setAttribute("data-error-visible", true);
 
-		if( isNaN( parseInt(firstname.value) ) ) {
-			document.querySelector(".formData__firstname").setAttribute("data-error", inputEmpty);
-			document.querySelector(".formData__firstname").setAttribute("data-error-visible", true);
+		if( isNaN( firstnameValue ) ) {
+			formFirstname.setAttribute("data-error", inputEmpty);
 
-			console.log( parseInt(firstname.value), typeof parseInt(firstname.value), inputEmpty );
-
-		} else if ( parseInt(firstname.value) < 2 ) {
-			document.querySelector(".formData__firstname").setAttribute("data-error", inputNotValid);
-			document.querySelector(".formData__firstname").setAttribute("data-error-visible", true);
-
-			console.log( parseInt(firstname.value), typeof parseInt(firstname.value), inputNotValid );
-			
-		} else {
-			document.querySelector(".formData__firstname").setAttribute("data-error", "");
-			document.querySelector(".formData__firstname").setAttribute("data-error-visible", false);
-
-			console.log("Le champ est bien rempli");
-			console.log( parseInt(firstname.value), typeof parseInt(firstname.value) );
+			console.log( firstnameValue, typeof firstnameValue);
 		}
+		else if ( firstnameValue > 0 && firstnameValue < 2 ) {
+			formFirstname.setAttribute("data-error", inputNotValid);
+
+			console.log( firstnameValue, typeof firstnameValue);
+		}
+		else if ( firstnameValue >= 2 ) {
+			formFirstname.setAttribute("data-error", inputValid);
+
+			console.log( firstnameValue, typeof firstnameValue);
+		} else {
+			console.log("Erreur sur le champ");
+			console.log( firstnameValue, typeof firstnameValue);
+		}
+
 	}
 
-	firstname.addEventListener("click", formFirstname, true);
+	firstname.addEventListener('keyup', verifyFirstname, true);
 
-	function formLastname (input) {
+	/*function verifyLastname (input) {
 		if (input) {
 
 		} else {
@@ -52,7 +81,7 @@
 		}
 	}
 
-	function formMail (input) {
+	function verifyMail (input) {
 		if (input) {
 
 		} else {
@@ -60,7 +89,7 @@
 		}
 	}
 
-	function formBirthdate (input) {
+	function verifyBirthdate (input) {
 		if (input) {
 
 		} else {
@@ -68,7 +97,7 @@
 		}
 	}
 
-	function formQuantityTournaments (input) {
+	function verifyQuantityTournaments (input) {
 		if (input) {
 
 		} else {
@@ -76,7 +105,7 @@
 		}
 	}
 
-	function formCitys (input) {
+	function verifyCitys (input) {
 		if (input) {
 
 		} else {
@@ -84,7 +113,7 @@
 		}
 	}
 
-	function formCheckboxLegal (input) {
+	function verifyCheckboxLegal (input) {
 		if (input) {
 
 		} else {
@@ -92,30 +121,23 @@
 		}
 	}
 
-	function formCheckboxNews (input) {
+	function verifyCheckboxNews (input) {
 		if (input) {
 
 		} else {
 			// Afficher le message d'erreur sur l'input
 		}
-	}
+	}*/
 
 	// Function for form verification before submiting it and submit it in case of conform
-	function formCalls () {
+	//function verifyCalls () {
 
 		/*
 		* Call here all sub-functions for validating the form
-		formFirstname();
-		formLastname();
-		formMail();
-		formBirthdate();
-		formQuantityTournaments();
-		formCitys();
-		formCheckboxLegal();
-		formCheckboxNews();
+		*
 		*/
 
-	}
+	//}
 
 	// Function for verifying clic on submit button
 	/*function formSubmit() {
