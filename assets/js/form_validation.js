@@ -1,38 +1,103 @@
 /*** VALIDATE FORM MODAL ***/
 
 	// DOM ELEMENTS
+	const firstname = document.querySelector("#firstname");
+	const lastname = document.querySelector("#lastname");
+	const mail = document.querySelector("#email");
+	const birthdate = document.querySelector("#birthdate");
+	const quantity = document.querySelector("#quantity");
+	const location1 = document.querySelector("#location1");
+	const location2 = document.querySelector("#location2");
+	const location3 = document.querySelector("#location3");
+	const location4 = document.querySelector("#location4");
+	const location5 = document.querySelector("#location5");
+	const location6 = document.querySelector("#location6");
+	const checkbox1 = document.querySelector("#checkbox1");
+	const checkbox2 = document.querySelector("#checkbox2");
 
 
 	function formFirstname () {
-		//
+
+		const inputEmpty = "Le champ est vide, veuillez entrer votre prénom";
+		const inputNotValid = "Le champ Prénom doit avoir un minimum de 2 caractères";
+
+		if( isNaN( parseInt(firstname.value) ) ) {
+			document.querySelector(".formData__firstname").setAttribute("data-error", inputEmpty);
+			document.querySelector(".formData__firstname").setAttribute("data-error-visible", true);
+
+			console.log( parseInt(firstname.value), typeof parseInt(firstname.value), inputEmpty );
+
+		} else if ( parseInt(firstname.value) < 2 ) {
+			document.querySelector(".formData__firstname").setAttribute("data-error", inputNotValid);
+			document.querySelector(".formData__firstname").setAttribute("data-error-visible", true);
+
+			console.log( parseInt(firstname.value), typeof parseInt(firstname.value), inputNotValid );
+			
+		} else {
+			document.querySelector(".formData__firstname").setAttribute("data-error", "");
+			document.querySelector(".formData__firstname").setAttribute("data-error-visible", false);
+
+			console.log("Le champ est bien rempli");
+			console.log( parseInt(firstname.value), typeof parseInt(firstname.value) );
+		}
 	}
 
-	function formLastname () {
-		//
+	firstname.addEventListener("click", formFirstname, true);
+
+	function formLastname (input) {
+		if (input) {
+
+		} else {
+			// Afficher le message d'erreur sur l'input
+		}
 	}
 
-	function formMail () {
-		//
+	function formMail (input) {
+		if (input) {
+
+		} else {
+			// Afficher le message d'erreur sur l'input
+		}
 	}
 
-	function formBirthdate () {
-		//
+	function formBirthdate (input) {
+		if (input) {
+
+		} else {
+			// Afficher le message d'erreur sur l'input
+		}
 	}
 
-	function formQuantityTournaments () {
-		//
+	function formQuantityTournaments (input) {
+		if (input) {
+
+		} else {
+			// Afficher le message d'erreur sur l'input
+		}
 	}
 
-	function formCitys () {
-		//
+	function formCitys (input) {
+		if (input) {
+
+		} else {
+			// Afficher le message d'erreur sur l'input
+		}
 	}
 
-	function formCheckboxLegal () {
-		//
+	function formCheckboxLegal (input) {
+		if (input) {
+
+		} else {
+			// Afficher le message d'erreur sur l'input
+		}
 	}
 
-	function formCheckboxNews () {
-		//
+	function formCheckboxNews (input) {
+		if (input) {
+
+		} else {
+			// Afficher le message d'erreur sur l'input
+		}
 	}
 
 	// Function for form verification before submiting it and submit it in case of conform
