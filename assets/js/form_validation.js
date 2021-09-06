@@ -55,15 +55,12 @@
 		let inputValue = parseInt(inputVerif.value.trim().length);
 		let inputWord = toString(inputVerif.value);
 
-		console.log(inputValue, typeof inputValue);
-		console.log(inputWord, typeof inputWord);
-
 		formVerif.setAttribute("data-error-visible", true);
 
 		if( isNaN( inputValue ) ) {
 			formVerif.setAttribute("data-error", inputEmpty);
 		}
-		else if ( inputValue > 0 || inputValue < 2 ) {
+		else if ( inputValue > 0 && inputValue < 2 ) {
 			formVerif.setAttribute("data-error", inputNotValid);
 		}
 		else if ( inputValue >= 2 ) {
@@ -74,8 +71,8 @@
 
 	}
 
-	firstname.addEventListener('keyup', verifyIdentity(firstname, 'Prénom', formFirstname), true);
-	lastname.addEventListener('keyup', verifyIdentity(lastname, 'Nom', formLastname), true);
+	firstname.addEventListener('keyup', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
+	lastname.addEventListener('keyup', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
 
 	/*
 
@@ -146,15 +143,5 @@
 
 		}
 	}*/
-
-	// Disable default Event (Browser reloading..)
-	/*formElement.addEventListener("submit", (event) => {
-		event.preventDefault();
-	});
-	
-	button1.addEventListener("click", (event) => {
-	// do something...
-		e.target.classList.add("disabled");
-	});*/
 
 /*** VALIDATE FORM MODAL ***/
