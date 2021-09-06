@@ -40,46 +40,44 @@
 	
 	/*** DOM ELEMENS ***/
 
-	function verifyFirstname () {
 
-		const inputEmpty = "Le champ est vide, veuillez entrer votre prénom";
-		const inputNotValid = "Le champ Prénom doit avoir un minimum de 2 caractères";
+	/*** VERIFY IDENTITY ***/
+	function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
+
+		let inputVerif = inputIdentity;
+		let inputText = textIdentity;
+		let formVerif = formIdentity;
+
+		const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
+		const inputNotValid = "Le champ " + inputText + " doit avoir un minimum de 2 caractères";
 		const inputValid = "Le champ est bien rempli";
-		let firstnameValue = parseInt(firstname.value.trim().length);
-		let firstnameWord = toString(firstname.value);
-		//console.log(firstname.value, typeof firstname.value);
-		formFirstname.setAttribute("data-error-visible", true);
 
-		if( isNaN( firstnameValue ) ) {
-			formFirstname.setAttribute("data-error", inputEmpty);
+		let inputValue = parseInt(inputVerif.value.trim().length);
+		let inputWord = toString(inputVerif.value);
 
-			console.log( firstnameValue, typeof firstnameValue);
+		console.log(inputValue, typeof inputValue);
+		console.log(inputWord, typeof inputWord);
+
+		formVerif.setAttribute("data-error-visible", true);
+
+		if( isNaN( inputValue ) ) {
+			formVerif.setAttribute("data-error", inputEmpty);
 		}
-		else if ( firstnameValue > 0 && firstnameValue < 2 ) {
-			formFirstname.setAttribute("data-error", inputNotValid);
-
-			console.log( firstnameValue, typeof firstnameValue);
+		else if ( inputValue > 0 || inputValue < 2 ) {
+			formVerif.setAttribute("data-error", inputNotValid);
 		}
-		else if ( firstnameValue >= 2 ) {
-			formFirstname.setAttribute("data-error", inputValid);
-
-			console.log( firstnameValue, typeof firstnameValue);
+		else if ( inputValue >= 2 ) {
+			formVerif.setAttribute("data-error", inputValid);
 		} else {
 			console.log("Erreur sur le champ");
-			console.log( firstnameValue, typeof firstnameValue);
 		}
 
 	}
 
-	firstname.addEventListener('keyup', verifyFirstname, true);
+	firstname.addEventListener('keyup', verifyIdentity(firstname, 'Prénom', formFirstname), true);
+	lastname.addEventListener('keyup', verifyIdentity(lastname, 'Nom', formLastname), true);
 
-	/*function verifyLastname (input) {
-		if (input) {
-
-		} else {
-			// Afficher le message d'erreur sur l'input
-		}
-	}
+	/*
 
 	function verifyMail (input) {
 		if (input) {
