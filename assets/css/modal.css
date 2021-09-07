@@ -89,8 +89,6 @@
 		font-family: var(--font-slab);
 	}
 
-	/* Modal form */
-
 	.button {
 		background: var(--red-lighter);
 		margin-top: 0.5em;
@@ -119,8 +117,8 @@
 		width: 100%;
 		overflow: auto;
 		background-color: var(--blue-background);
-		transform: translateY(-100%);
-		opacity: 0;
+		/* transform: translateY(-100%); */
+		/* opacity: 0; */
 	}
 
 	.bground-open,
@@ -153,8 +151,6 @@
 		padding: 15px 8%;
 		margin: 15px auto;
 	}
-
-	
 
 	.close {
 		position: absolute;

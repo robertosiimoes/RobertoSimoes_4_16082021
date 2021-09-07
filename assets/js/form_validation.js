@@ -37,6 +37,12 @@
 			const checkbox2 = document.querySelector("#checkbox2");
 
 		/*** INPUTS ***/
+
+		/*** BUTTONS ***/
+
+			const btnSubmit = document.querySelector(".btn-submit");
+
+		/*** BUTTONS ***/
 	
 	/*** DOM ELEMENS ***/
 
@@ -48,14 +54,19 @@
 		let inputText = textIdentity;
 		let formVerif = formIdentity;
 
+		//const regVerif = /[!@#$%^&*()_+\-=[\]{};:|,.<>?/\'\"]/g;
+
 		const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
 		const inputNotValid = "Le champ " + inputText + " doit avoir un minimum de 2 caractères";
 		const inputValid = "Le champ est bien rempli";
+		const inputInvalid = "Les caractères spéciaux ne sont pas autorisés";
 
 		let inputValue = parseInt(inputVerif.value.trim().length);
 		let inputWord = toString(inputVerif.value);
 
 		formVerif.setAttribute("data-error-visible", true);
+		formVerif.setAttribute("data-valid", false);
+		inputVerif.setAttribute("data-valid", false);
 
 		if( isNaN( inputValue ) ) {
 			formVerif.setAttribute("data-error", inputEmpty);
@@ -64,7 +75,17 @@
 			formVerif.setAttribute("data-error", inputNotValid);
 		}
 		else if ( inputValue >= 2 ) {
-			formVerif.setAttribute("data-error", inputValid);
+
+			//console.log( inputWord.match(regVerif) );
+
+			if ( regVerif.match(inputWord) ) {
+				formVerif.setAttribute("data-error", inputValid);
+				formVerif.setAttribute("data-valid", true);
+				inputVerif.setAttribute("data-valid", true);
+			} else {
+				formVerif.setAttribute("data-error", inputInvalid);
+			}
+			
 		} else {
 			console.log("Erreur sur le champ");
 		}
@@ -73,6 +94,8 @@
 
 	firstname.addEventListener('keyup', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
 	lastname.addEventListener('keyup', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
+
+
 
 	/*
 

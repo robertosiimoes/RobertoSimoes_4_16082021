@@ -4,9 +4,6 @@
 	const modalContainer = document.querySelector(".bground");
 	const modalBtnOpen = document.querySelectorAll(".modal-btn");
 	const modalBtnClose = document.querySelector(".content .close");
-	const formModal = document.querySelector(".form-modal")
-	const formData = document.querySelectorAll(".formData");
-	const btnSubmit = document.querySelector(".btn-submit");
 
 
 	// VARIABLES

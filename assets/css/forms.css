@@ -26,7 +26,6 @@
 	.formData[data-error]::after {
 		content: attr(data-error);
 		font-size: 0.4em;
-		color: var(--red-pastel);
 		display: block;
 		margin-top: 7px;
 		margin-bottom: 7px;
@@ -34,6 +33,14 @@
 		line-height: 0.3;
 		opacity: 0;
 		transition: 0.3s;
+	}
+
+	.formData[data-valid="false"]::after {
+		color: var(--red-pastel);
+	}
+
+	.formData[data-valid="true"]::after {
+		color: var(--green);
 	}
 
 	.formData[data-error-visible="true"]::after {
@@ -44,11 +51,9 @@
 		border: 2px solid var(--red-pastel);
 	}
 
-	/*input[data-error]::after {
-	content: attr(data-error);
-	font-size: 0.4em;
-	color: var(--red);
-	}*/
+	.formData[data-error-visible="true"] .text-control[data-valid="true"] {
+		border: 2px solid var(--green);
+	}
 
 	.checkbox-label,
 	.checkbox2-label {
