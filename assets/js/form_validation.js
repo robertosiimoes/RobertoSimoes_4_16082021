@@ -54,7 +54,7 @@
 		let inputText = textIdentity;
 		let formVerif = formIdentity;
 
-		const regVerif = /[!@#$%^&*()_+\-=[\]{};:|,.<>?/\'\"]/g;
+		const regVerif = /[!@#$%^&*()_+\-=\[\]{};:|,.<>?\/\'\"]/g;
 
 		const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
 		const inputNotValid = "Le champ " + inputText + " doit avoir un minimum de 2 caractères";
@@ -65,10 +65,11 @@
 		let inputWord = toString(inputVerif.value);
 
 		formVerif.setAttribute("data-error-visible", true);
+		formVerif.setAttribute("data-error", inputEmpty);
 		formVerif.setAttribute("data-valid", false);
 		inputVerif.setAttribute("data-valid", false);
 
-		if( isNaN( inputValue ) ) {
+		if ( isNaN( inputValue ) ) {
 			formVerif.setAttribute("data-error", inputEmpty);
 		}
 		else if ( inputValue > 0 && inputValue < 2 ) {
@@ -76,95 +77,75 @@
 		}
 		else if ( inputValue >= 2 ) {
 
-			//console.log( inputWord.match(regVerif) );
-
 			if ( regVerif.test(inputWord) ) {
 				formVerif.setAttribute("data-error", inputValid);
 				formVerif.setAttribute("data-valid", true);
 				inputVerif.setAttribute("data-valid", true);
-			} else {
+			}
+			else {
 				formVerif.setAttribute("data-error", inputInvalid);
 			}
-			
-		} else {
-			console.log("Erreur sur le champ");
 		}
-
+		else {
+			//console.log("Erreur sur le champ");
+		}
 	}
 
 	firstname.addEventListener('keyup', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
 	lastname.addEventListener('keyup', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
 
-
-
 	/*
 
 	function verifyMail (input) {
-		if (input) {
-
-		} else {
-			// Afficher le message d'erreur sur l'input
-		}
+		//
 	}
 
 	function verifyBirthdate (input) {
-		if (input) {
-
-		} else {
-			// Afficher le message d'erreur sur l'input
-		}
+		// 
 	}
 
 	function verifyQuantityTournaments (input) {
-		if (input) {
-
-		} else {
-			// Afficher le message d'erreur sur l'input
-		}
+		// 
 	}
 
 	function verifyCitys (input) {
-		if (input) {
-
-		} else {
-			// Afficher le message d'erreur sur l'input
-		}
+		// 
 	}
 
 	function verifyCheckboxLegal (input) {
-		if (input) {
-
-		} else {
-			// Afficher le message d'erreur sur l'input
-		}
+		// 
 	}
 
 	function verifyCheckboxNews (input) {
-		if (input) {
+		// 
+	}
 
-		} else {
-			// Afficher le message d'erreur sur l'input
-		}
-	}*/
+	*/
 
-	// Function for form verification before submiting it and submit it in case of conform
-	//function verifyCalls () {
+	/* Function for form verification before submiting it and submit it in case of conform
+	 * Call here all sub-functions for validating the form
+	 *
+	 */
 
-		/*
-		* Call here all sub-functions for validating the form
-		*
-		*/
+	/*
 
-	//}
+	function verifyCalls () {
+		//
+	}
 
-	// Function for verifying clic on submit button
-	/*function formSubmit() {
-		// Testing if the user clic on submit button
-		if () {
+	*/
 
-		} else {
+	/* Function for verifying clic on submit button */
 
-		}
-	}*/
+	/*
+	function formSubmit() {
+
+		btnSubmit.addEventListener('click', function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+		});
+	}
+
+	*/
 
 /*** VALIDATE FORM MODAL ***/
