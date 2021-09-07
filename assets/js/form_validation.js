@@ -91,8 +91,8 @@
 		}
 	}
 
-	firstname.addEventListener('keyup', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
-	lastname.addEventListener('keyup', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
+	firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
+	lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
 
 	/*
 
