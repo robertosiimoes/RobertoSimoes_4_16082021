@@ -54,7 +54,7 @@
 		let inputText = textIdentity;
 		let formVerif = formIdentity;
 
-		//const regVerif = /[!@#$%^&*()_+\-=[\]{};:|,.<>?/\'\"]/g;
+		const regVerif = /[!@#$%^&*()_+\-=[\]{};:|,.<>?/\'\"]/g;
 
 		const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
 		const inputNotValid = "Le champ " + inputText + " doit avoir un minimum de 2 caractères";
@@ -78,7 +78,7 @@
 
 			//console.log( inputWord.match(regVerif) );
 
-			if ( regVerif.match(inputWord) ) {
+			if ( regVerif.test(inputWord) ) {
 				formVerif.setAttribute("data-error", inputValid);
 				formVerif.setAttribute("data-valid", true);
 				inputVerif.setAttribute("data-valid", true);
