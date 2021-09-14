@@ -48,34 +48,70 @@
 
 
 	/*** VERIFY IDENTITY ***/
-	function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
 
-		let inputVerif = inputIdentity;
-		let inputText = textIdentity;
-		let formVerif = formIdentity;
+		function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
 
-		const regVerif = /[!@#$%^&*()_+\-=\[\]{};:|,.<>?\/\'\"]/g;
+			let inputVerif = inputIdentity;
+			let inputText = textIdentity;
+			let formVerif = formIdentity;
 
-		const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
-		const inputNotValid = "Le champ " + inputText + " doit avoir un minimum de 2 caractères";
-		const inputValid = "Le champ est bien rempli";
-		const inputInvalid = "Les caractères spéciaux ne sont pas autorisés";
+			const regVerif = /[!@#$%^&*()_+\-=\[\]{};:|,.<>?\/\'\"]/g;
 
-		let inputValue = parseInt(inputVerif.value.trim().length);
-		let inputWord = toString(inputVerif.value);
+			const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
+			const inputNotValid = "Le champ " + inputText + " doit avoir un minimum de 2 caractères";
+			const inputValid = "Le champ est bien rempli";
+			const inputInvalid = "Les caractères spéciaux ne sont pas autorisés";
 
-		formVerif.setAttribute("data-error-visible", true);
-		formVerif.setAttribute("data-error", inputEmpty);
-		formVerif.setAttribute("data-valid", false);
-		inputVerif.setAttribute("data-valid", false);
+			let inputValue = parseInt(inputVerif.value.trim().length);
+			let inputWord = toString(inputVerif.value);
 
-		if ( isNaN( inputValue ) ) {
+			formVerif.setAttribute("data-error-visible", true);
 			formVerif.setAttribute("data-error", inputEmpty);
+			formVerif.setAttribute("data-valid", false);
+			inputVerif.setAttribute("data-valid", false);
+
+			if ( isNaN( inputValue ) ) {
+				formVerif.setAttribute("data-error", inputEmpty);
+			}
+			else if ( inputValue > 0 && inputValue < 2 ) {
+				formVerif.setAttribute("data-error", inputNotValid);
+			}
+			else if ( inputValue >= 2 ) {
+
+				if ( regVerif.test(inputWord) ) {
+					formVerif.setAttribute("data-error", inputValid);
+					formVerif.setAttribute("data-valid", true);
+					inputVerif.setAttribute("data-valid", true);
+				}
+				else {
+					formVerif.setAttribute("data-error", inputInvalid);
+				}
+			}
+			else {
+				//console.log("Erreur sur le champ");
+			}
 		}
-		else if ( inputValue > 0 && inputValue < 2 ) {
-			formVerif.setAttribute("data-error", inputNotValid);
-		}
-		else if ( inputValue >= 2 ) {
+
+	/*** VERIFY IDENTITY ***/
+
+
+	/*** VERIFY MAIL ***/
+
+		function verifyMail (inputIdentity, textIdentity, formIdentity) {
+
+			let inputVerif = inputIdentity;
+			let inputText = textIdentity;
+			let formVerif = formIdentity;
+
+			const regVerif = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+			const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
+			const inputValid = "Le champ est bien rempli";
+			const inputInvalid = "Les caractères spéciaux ne sont pas autorisés";
+
+			let inputValue = inputIdentity.value;
+
+			let inputWord = toString(inputVerif.value);
 
 			if ( regVerif.test(inputWord) ) {
 				formVerif.setAttribute("data-error", inputValid);
@@ -85,20 +121,13 @@
 			else {
 				formVerif.setAttribute("data-error", inputInvalid);
 			}
-		}
-		else {
-			//console.log("Erreur sur le champ");
-		}
-	}
 
-	firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
-	lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
+			console.log(inputValue, typeof inputValue);
+		}
+
+	/*** VERIFY MAIL ***/
 
 	/*
-
-	function verifyMail (input) {
-		//
-	}
 
 	function verifyBirthdate (input) {
 		// 
@@ -120,24 +149,10 @@
 		// 
 	}
 
-	*/
-
-	/* Function for form verification before submiting it and submit it in case of conform
-	 * Call here all sub-functions for validating the form
-	 *
-	 */
-
-	/*
-
 	function verifyCalls () {
 		//
 	}
 
-	*/
-
-	/* Function for verifying clic on submit button */
-
-	/*
 	function formSubmit() {
 
 		btnSubmit.addEventListener('click', function(event) {
@@ -147,5 +162,9 @@
 	}
 
 	*/
+
+	firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
+	lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
+	mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
 
 /*** VALIDATE FORM MODAL ***/
