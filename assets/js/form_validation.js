@@ -6,17 +6,11 @@
 
 			const formFirstname = document.querySelector(' .formData[data-input="firstname"] ');
 			const formLastname  = document.querySelector(' .formData[data-input="lastname"] ');
-			const formMail      = document.querySelector(' .formData[data-input="mail"] ');
+			const formMail      = document.querySelector(' .formData[data-input="email"] ');
 			const formBirthdate = document.querySelector(' .formData[data-input="birthdate"] ');
 			const formQuantity  = document.querySelector(' .formData[data-input="quantity"] ');
 			const formLocation1 = document.querySelector(' .formData[data-input="location1"] ');
-			const formLocation2 = document.querySelector(' .formData[data-input="location2"] ');
-			const formLocation3 = document.querySelector(' .formData[data-input="location3"] ');
-			const formLocation4 = document.querySelector(' .formData[data-input="location4"] ');
-			const formLocation5 = document.querySelector(' .formData[data-input="location5"] ');
-			const formLocation6 = document.querySelector(' .formData[data-input="location6"] ');
 			const formCheckbox1 = document.querySelector(' .formData[data-input="checkbox1"] ');
-			const formCheckbox2 = document.querySelector(' .formData[data-input="checkbox2"] ');
 
 		/*** FORM DATA ***/
 
@@ -35,6 +29,8 @@
 			const location6 = document.querySelector("#location6");
 			const checkbox1 = document.querySelector("#checkbox1");
 			const checkbox2 = document.querySelector("#checkbox2");
+
+			// Déclarer une seule variable avec tableau pour boucler dessus
 
 		/*** INPUTS ***/
 
@@ -55,7 +51,7 @@
 			let inputText = textIdentity;
 			let formVerif = formIdentity;
 
-			const regVerif = /[!@#$%^&*()_+\-=\[\]{};:|,.<>?\/\'\"]/g;
+			//const regVerif = /[!@#$%^&*()_+\-=\[\]{};:|,.<>?\/\'\"]/g;
 
 			const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
 			const inputNotValid = "Le champ " + inputText + " doit avoir un minimum de 2 caractères";
