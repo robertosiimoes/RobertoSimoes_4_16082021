@@ -103,7 +103,9 @@
 			let inputText = textIdentity;
 			let formVerif = formIdentity;
 
-			const regVerif = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+			const regVerif = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
+
+			console.log(regVerif, typeof regVerif);
 
 			const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
 			const inputValid = "Le champ est bien rempli";
@@ -155,9 +157,8 @@
 
 	function formSubmit() {
 
-		btnSubmit.addEventListener('click', function(event) {
+		btnSubmit.addEventListener('submit', function(event) {
 			event.preventDefault();
-			event.stopPropagation();
 		});
 	}
 
