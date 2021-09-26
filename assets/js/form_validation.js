@@ -73,9 +73,23 @@
 				case "other":
 					messageToReturn = "Le champ a rencontré une erreur imprévue";
 					return messageToReturn;
+					break;
 				case "invalid-birthdate":
 					messageToReturn = "Veuillez saisir une date de naissance valide au format jj / mm / aaaa";
 					return messageToReturn;
+					break;
+				case "invalid-email":
+					messageToReturn = "Veuillez saisir un email au format valide";
+					return messageToReturn;
+					break;
+				case "invalid-quantity":
+					messageToReturn = "Veuillez entrer une valeur numérique pour le nombre de tournois";
+					return messageToReturn;
+					break;
+				case "tohigh-quantity":
+					messageToReturn = "Veuillez entrer un nombre de tournois compris entre 0 et 99";
+					return messageToReturn;
+					break;
 				default:
 					break;
 			}
@@ -132,9 +146,31 @@
 
 	/*** VERIFY MAIL ***/
 
-		function verifyMail (inputIdentity, textIdentity, formIdentity) {
+		// function verifyMail (inputIdentity, textIdentity, formIdentity) {
 
-		}
+		// 	let inputLength = parseInt(inputIdentity.value.length);
+		// 	let inputValue = inputIdentity.value;
+
+		// 	initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+
+		// 	if ( isNaN( inputLength ) || inputLength === 0 ) {
+		// 		formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+		// 	}
+		// 	else if ( inputLength > 0 ) {
+
+		// 		if ( !regMail.test(inputValue) ) {
+		// 			formIdentity.setAttribute("data-error", printMessage("invalid-email"));
+		// 		}
+		// 		else {
+		// 			formIdentity.setAttribute("data-error", printMessage("valid"));
+		// 			formIdentity.setAttribute("data-valid", true);
+		// 			inputIdentity.setAttribute("data-valid", true);
+		// 		}
+		// 	}
+		// 	else {
+		// 		formIdentity.setAttribute("data-error", printMessage("other"));
+		// 	}
+		// }
 
 	/*** VERIFY MAIL ***/
 
@@ -175,9 +211,32 @@
 
 	/*** VERIFY QUANTITY TOURNAMENTS ***/
 	
-		// function verifyQuantityTournaments (input) {
-			
-		// }
+		function verifyQuantityTournaments (inputIdentity, textIdentity, formIdentity) {
+
+			let inputLength = inputIdentity.value.length;
+			let inputValue = parseInt(inputIdentity.value.trim());
+
+			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+
+			console.log( inputValue, typeof inputValue );
+
+			if ( inputLength < 0 || isNaN(inputValue)  ) {
+				formIdentity.setAttribute("data-error", printMessage("empty"));
+				console.log( inputValue );
+			}
+			else if ( inputValue > 99 ) {
+				formIdentity.setAttribute("data-error", printMessage("tohigh-quantity"));
+			}
+			else if ( 0 <= inputValue <= 99 ) {
+				formIdentity.setAttribute("data-error", printMessage("valid"));
+				formIdentity.setAttribute("data-valid", true);
+				inputIdentity.setAttribute("data-valid", true);
+			}
+			else {
+				formIdentity.setAttribute("data-error", printMessage("other"));
+			}
+
+		}
 
 	/*** VERIFY QUANTITY TOURNAMENTS ***/
 
@@ -236,8 +295,9 @@
 
 		//firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
 		//lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
-		mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
+		//mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
 		//birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
+		quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
 
 	/*** CALLS  ***/
 
