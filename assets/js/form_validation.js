@@ -9,159 +9,213 @@
 			const formMail      = document.querySelector(' .formData[data-input="email"] ');
 			const formBirthdate = document.querySelector(' .formData[data-input="birthdate"] ');
 			const formQuantity  = document.querySelector(' .formData[data-input="quantity"] ');
-			const formLocation1 = document.querySelector(' .formData[data-input="location1"] ');
+			const formLocation1 = document.querySelector(' .formData[data-input="location"] ');
 			const formCheckbox1 = document.querySelector(' .formData[data-input="checkbox1"] ');
 
 		/*** FORM DATA ***/
 
-		/*** INPUTS ***/
+		/*** INPUTS AND BUTTONS ***/
 
 			const firstname = document.querySelector("#firstname");
 			const lastname  = document.querySelector("#lastname");
 			const mail      = document.querySelector("#email");
 			const birthdate = document.querySelector("#birthdate");
 			const quantity  = document.querySelector("#quantity");
-			const location1 = document.querySelector("#location1");
-			const location2 = document.querySelector("#location2");
-			const location3 = document.querySelector("#location3");
-			const location4 = document.querySelector("#location4");
-			const location5 = document.querySelector("#location5");
-			const location6 = document.querySelector("#location6");
-			const checkbox1 = document.querySelector("#checkbox1");
-			const checkbox2 = document.querySelector("#checkbox2");
 
-			// Déclarer une seule variable avec tableau pour boucler dessus
+			// Getting all the inputs checkbox for locations
+			const locations = document.querySelectorAll(" .checkbox-input[name='location'] ");
 
-		/*** INPUTS ***/
+			// Getting the checkboxs for agree and newsletter
+			const checkboxs = document.querySelectorAll(" .checkbox-input[type='checkbox'] ");
 
-		/*** BUTTONS ***/
-
+			// Buttons for submitting form
 			const btnSubmit = document.querySelector(".btn-submit");
+		
+		/*** INPUTS AND BUTTONS ***/
 
-		/*** BUTTONS ***/
+		/*** REGEX ***/
+
+			const regIdentity = /[!@#$%^&*()_+\-=\[\]{};:|,<.>?\/\'\"\d]/g;
+
+			const regMail = /(?:^|\s)[\w!#$%&'*+/=?^`{|}~-](\.?[\w!#$%&'*+/=?^`{|}~-]+)*@\w+[.-]?\w*\.[a-zA-Z]{2,3}\b/;
+
+			const regBirth = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/ ;
+
+		/*** REGEX ***/
+
 	
 	/*** DOM ELEMENS ***/
 
 
-	/*** VERIFY IDENTITY ***/
+	/*** PRINT MESSAGE ***/
 
-		function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
+		function printMessage(statut, text) {
 
-			let inputVerif = inputIdentity;
-			let inputText = textIdentity;
-			let formVerif = formIdentity;
+			let messageToReturn = "";
 
-			//const regVerif = /[!@#$%^&*()_+\-=\[\]{};:|,.<>?\/\'\"]/g;
-
-			const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
-			const inputNotValid = "Le champ " + inputText + " doit avoir un minimum de 2 caractères";
-			const inputValid = "Le champ est bien rempli";
-			const inputInvalid = "Les caractères spéciaux ne sont pas autorisés";
-
-			let inputValue = parseInt(inputVerif.value.trim().length);
-			let inputWord = toString(inputVerif.value);
-
-			formVerif.setAttribute("data-error-visible", true);
-			formVerif.setAttribute("data-error", inputEmpty);
-			formVerif.setAttribute("data-valid", false);
-			inputVerif.setAttribute("data-valid", false);
-
-			if ( isNaN( inputValue ) ) {
-				formVerif.setAttribute("data-error", inputEmpty);
-			}
-			else if ( inputValue > 0 && inputValue < 2 ) {
-				formVerif.setAttribute("data-error", inputNotValid);
-			}
-			else if ( inputValue >= 2 ) {
-
-				if ( regVerif.test(inputWord) ) {
-					formVerif.setAttribute("data-error", inputValid);
-					formVerif.setAttribute("data-valid", true);
-					inputVerif.setAttribute("data-valid", true);
-				}
-				else {
-					formVerif.setAttribute("data-error", inputInvalid);
-				}
-			}
-			else {
-				//console.log("Erreur sur le champ");
+			switch (statut) {
+				case "empty":
+					messageToReturn = "Le champ est vide, veuillez entrer votre " + text.toLowerCase() + " ";
+					return messageToReturn;
+					break;
+				case "notvalid":
+					messageToReturn = "Le champ " + text + " doit avoir un minimum de 2 caractères";
+					return messageToReturn;
+					break;
+				case "invalid":
+					messageToReturn = "Les caractères spéciaux et les chiffres ne sont pas autorisés";
+					return messageToReturn;
+					break;
+				case "valid":
+					messageToReturn = "Le champ est bien rempli";
+					return messageToReturn;
+					break;
+				case "other":
+					messageToReturn = "Le champ a rencontré une erreur imprévue";
+					return messageToReturn;
+				default:
+					break;
 			}
 		}
+
+	/*** PRINT MESSAGE ***/
+
+
+	/*** INITIALIZE FIELD ***/
+
+		function initializeField(input, text, formData) {
+			formData.setAttribute("data-error-visible", true);
+			formData.setAttribute("data-error", printMessage("empty", text));
+			formData.setAttribute("data-valid", false);
+			input.setAttribute("data-valid", false);
+		}
+
+	/*** INITIALIZE FIELD ***/
+
+
+	/*** VERIFY IDENTITY ***/
+
+		// function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
+
+		// 	let inputValue = parseInt(inputIdentity.value.length);
+		// 	let inputWord = inputIdentity.value;
+
+		// 	initializeField(inputIdentity, textIdentity, formIdentity);
+
+		// 	if ( isNaN( inputValue ) || inputValue === 0 ) {
+		// 		formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+		// 	}
+		// 	else if ( inputValue > 0 && inputValue < 2 ) {
+		// 		formIdentity.setAttribute("data-error", printMessage("notvalid", textIdentity));
+		// 	}
+		// 	else if ( inputValue >= 2 ) {
+
+		// 		if ( regIdentity.test(inputWord) ) {
+		// 			formIdentity.setAttribute("data-error", printMessage("invalid"));
+		// 		}
+		// 		else {
+		// 			formIdentity.setAttribute("data-error", printMessage("valid"));
+		// 			formIdentity.setAttribute("data-valid", true);
+		// 			inputIdentity.setAttribute("data-valid", true);
+		// 		}
+		// 	}
+		// 	else {
+		// 		formIdentity.setAttribute("data-error", printMessage("other"));
+		// 	}
+		// }
 
 	/*** VERIFY IDENTITY ***/
 
 
 	/*** VERIFY MAIL ***/
 
-		function verifyMail (inputIdentity, textIdentity, formIdentity) {
+		// function verifyMail (inputIdentity, textIdentity, formIdentity) {
 
-			let inputVerif = inputIdentity;
-			let inputText = textIdentity;
-			let formVerif = formIdentity;
+		// }
 
-			const regVerif = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
+	/*** VERIFY MAIL ***/
 
-			console.log(regVerif, typeof regVerif);
+	
+	/*** VERIFY BIRTHDATE ***/
 
-			const inputEmpty = "Le champ est vide, veuillez entrer votre " + inputText.toLowerCase() + " ";
-			const inputValid = "Le champ est bien rempli";
-			const inputInvalid = "Les caractères spéciaux ne sont pas autorisés";
+		function verifyBirthdate (inputIdentity, textIdentity, formIdentity) {
 
+			let inputLength = parseInt(inputIdentity.value.length);
 			let inputValue = inputIdentity.value;
 
-			let inputWord = toString(inputVerif.value);
-
-			if ( regVerif.test(inputWord) ) {
-				formVerif.setAttribute("data-error", inputValid);
-				formVerif.setAttribute("data-valid", true);
-				inputVerif.setAttribute("data-valid", true);
-			}
-			else {
-				formVerif.setAttribute("data-error", inputInvalid);
-			}
-
 			console.log(inputValue, typeof inputValue);
+
 		}
 
-	/*** VERIFY MAIL ***/
+	/*** VERIFY BIRTHDATE ***/
 
-	/*
 
-	function verifyBirthdate (input) {
-		// 
-	}
+	/*** VERIFY QUANTITY TOURNAMENTS ***/
+	
+		// function verifyQuantityTournaments (input) {
+			
+		// }
 
-	function verifyQuantityTournaments (input) {
-		// 
-	}
+	/*** VERIFY QUANTITY TOURNAMENTS ***/
 
-	function verifyCitys (input) {
-		// 
-	}
 
-	function verifyCheckboxLegal (input) {
-		// 
-	}
+	/*** VERIFY CITYS ***/
 
-	function verifyCheckboxNews (input) {
-		// 
-	}
+		// function verifyCitys (input) {
+		// 	locations.forEach(element => {
+		// 		console.log( locationsNumbers[element] );
+		// 	});
+		// }
 
-	function verifyCalls () {
-		//
-	}
+	/*** VERIFY CITYS ***/
 
-	function formSubmit() {
 
-		btnSubmit.addEventListener('submit', function(event) {
-			event.preventDefault();
-		});
-	}
+	/*** VERIFY CHECKBOX LEGAL ***/
 
-	*/
+		// function verifyCheckboxLegal (input) {
+			
+		// }
 
-	firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
-	lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
-	mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
+	/*** VERIFY CHECKBOX LEGAL ***/
+
+
+	/*** VERIFY CHECKBOX NEWSLETTER ***/
+
+		// function verifyCheckboxNews (input) {
+			
+		// }
+
+	/*** VERIFY CHECKBOX NEWSLETTER ***/
+
+
+	/*** VERIFY CALLS ***/
+
+		// function verifyCalls () {
+
+		// }
+
+	/*** VERIFY CALLS ***/
+
+
+	/*** VERIFY FORM SUBMISSION ***/
+
+		// function formSubmit() {
+
+		// 	btnSubmit.addEventListener('submit', function(event) {
+		// 		event.preventDefault();
+		// 	});
+		// }
+
+	/*** VERIFY FORM SUBMISSION  ***/
+
+
+	/*** CALLS  ***/
+
+		//firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
+		//lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
+		//mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
+		birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
+
+	/*** CALLS  ***/
 
 /*** VALIDATE FORM MODAL ***/
