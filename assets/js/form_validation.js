@@ -39,7 +39,7 @@
 
 			const regMail = /(?:^|\s)[\w!#$%&'*+/=?^`{|}~-](\.?[\w!#$%&'*+/=?^`{|}~-]+)*@\w+[.-]?\w*\.[a-zA-Z]{2,3}\b/;
 
-			const regBirth = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/ ;
+			const regBirth = /^([0-2][0-9]|(3)[0-1])(-)(((0)[0-9])|((1)[0-2]))(-)\d{4}$/ ;
 
 		/*** REGEX ***/
 
@@ -73,6 +73,9 @@
 				case "other":
 					messageToReturn = "Le champ a rencontré une erreur imprévue";
 					return messageToReturn;
+				case "invalid-birthdate":
+					messageToReturn = "Veuillez saisir une date de naissance valide au format jj / mm / aaaa";
+					return messageToReturn;
 				default:
 					break;
 			}
@@ -83,9 +86,8 @@
 
 	/*** INITIALIZE FIELD ***/
 
-		function initializeField(input, text, formData) {
+		function initializeField(input, text, formData, message) {
 			formData.setAttribute("data-error-visible", true);
-			formData.setAttribute("data-error", printMessage("empty", text));
 			formData.setAttribute("data-valid", false);
 			input.setAttribute("data-valid", false);
 		}
@@ -100,7 +102,8 @@
 		// 	let inputValue = parseInt(inputIdentity.value.length);
 		// 	let inputWord = inputIdentity.value;
 
-		// 	initializeField(inputIdentity, textIdentity, formIdentity);
+		// 	initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+		// 	formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
 
 		// 	if ( isNaN( inputValue ) || inputValue === 0 ) {
 		// 		formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
@@ -129,23 +132,43 @@
 
 	/*** VERIFY MAIL ***/
 
-		// function verifyMail (inputIdentity, textIdentity, formIdentity) {
+		function verifyMail (inputIdentity, textIdentity, formIdentity) {
 
-		// }
+		}
 
 	/*** VERIFY MAIL ***/
 
 	
 	/*** VERIFY BIRTHDATE ***/
 
-		function verifyBirthdate (inputIdentity, textIdentity, formIdentity) {
+		// function verifyBirthdate (inputIdentity, textIdentity, formIdentity) {
 
-			let inputLength = parseInt(inputIdentity.value.length);
-			let inputValue = inputIdentity.value;
+		// 	let inputLength = inputIdentity.value.length;
+		// 	let inputValue = inputIdentity.value;
 
-			console.log(inputValue, typeof inputValue);
+		// 	initializeField(inputIdentity, textIdentity, formIdentity, "empty");
 
-		}
+		// 	if ( inputLength < 10 || inputLength > 10 ) {
+		// 		formIdentity.setAttribute("data-error", printMessage("invalid-birthdate", textIdentity));
+		// 	}
+		// 	else if ( inputLength === 10 ) {
+
+		// 		let newBirthdate = inputValue.split('-').reverse().join('-');
+
+		// 		if ( regBirth.test(newBirthdate) == false ) {
+		// 			formIdentity.setAttribute("data-error", printMessage("invalid-birthdate"));
+		// 		}
+		// 		else {
+		// 			formIdentity.setAttribute("data-error", printMessage("valid"));
+		// 			formIdentity.setAttribute("data-valid", true);
+		// 			inputIdentity.setAttribute("data-valid", true);
+		// 		}
+		// 	}
+		// 	else {
+		// 		formIdentity.setAttribute("data-error", printMessage("other"));
+		// 	}
+			
+		// }
 
 	/*** VERIFY BIRTHDATE ***/
 
@@ -213,8 +236,8 @@
 
 		//firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
 		//lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
-		//mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
-		birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
+		mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
+		//birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
 
 	/*** CALLS  ***/
 
