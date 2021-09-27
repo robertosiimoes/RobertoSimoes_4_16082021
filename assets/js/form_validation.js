@@ -111,100 +111,100 @@
 
 	/*** VERIFY IDENTITY ***/
 
-		// function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
+		function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
 
-		// 	let inputValue = parseInt(inputIdentity.value.length);
-		// 	let inputWord = inputIdentity.value;
+			let inputValue = parseInt(inputIdentity.value.length);
+			let inputWord = inputIdentity.value;
 
-		// 	initializeField(inputIdentity, textIdentity, formIdentity, "empty");
-		// 	formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+			formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
 
-		// 	if ( isNaN( inputValue ) || inputValue === 0 ) {
-		// 		formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
-		// 	}
-		// 	else if ( inputValue > 0 && inputValue < 2 ) {
-		// 		formIdentity.setAttribute("data-error", printMessage("notvalid", textIdentity));
-		// 	}
-		// 	else if ( inputValue >= 2 ) {
+			if ( isNaN( inputValue ) || inputValue === 0 ) {
+				formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+			}
+			else if ( inputValue > 0 && inputValue < 2 ) {
+				formIdentity.setAttribute("data-error", printMessage("notvalid", textIdentity));
+			}
+			else if ( inputValue >= 2 ) {
 
-		// 		if ( regIdentity.test(inputWord) ) {
-		// 			formIdentity.setAttribute("data-error", printMessage("invalid"));
-		// 		}
-		// 		else {
-		// 			formIdentity.setAttribute("data-error", printMessage("valid"));
-		// 			formIdentity.setAttribute("data-valid", true);
-		// 			inputIdentity.setAttribute("data-valid", true);
-		// 		}
-		// 	}
-		// 	else {
-		// 		formIdentity.setAttribute("data-error", printMessage("other"));
-		// 	}
-		// }
+				if ( regIdentity.test(inputWord) ) {
+					formIdentity.setAttribute("data-error", printMessage("invalid"));
+				}
+				else {
+					formIdentity.setAttribute("data-error", printMessage("valid"));
+					formIdentity.setAttribute("data-valid", true);
+					inputIdentity.setAttribute("data-valid", true);
+				}
+			}
+			else {
+				formIdentity.setAttribute("data-error", printMessage("other"));
+			}
+		}
 
 	/*** VERIFY IDENTITY ***/
 
 
 	/*** VERIFY MAIL ***/
 
-		// function verifyMail (inputIdentity, textIdentity, formIdentity) {
+		function verifyMail (inputIdentity, textIdentity, formIdentity) {
 
-		// 	let inputLength = parseInt(inputIdentity.value.length);
-		// 	let inputValue = inputIdentity.value;
+			let inputLength = parseInt(inputIdentity.value.length);
+			let inputValue = inputIdentity.value;
 
-		// 	initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
 
-		// 	if ( isNaN( inputLength ) || inputLength === 0 ) {
-		// 		formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
-		// 	}
-		// 	else if ( inputLength > 0 ) {
+			if ( isNaN( inputLength ) || inputLength === 0 ) {
+				formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+			}
+			else if ( inputLength > 0 ) {
 
-		// 		if ( !regMail.test(inputValue) ) {
-		// 			formIdentity.setAttribute("data-error", printMessage("invalid-email"));
-		// 		}
-		// 		else {
-		// 			formIdentity.setAttribute("data-error", printMessage("valid"));
-		// 			formIdentity.setAttribute("data-valid", true);
-		// 			inputIdentity.setAttribute("data-valid", true);
-		// 		}
-		// 	}
-		// 	else {
-		// 		formIdentity.setAttribute("data-error", printMessage("other"));
-		// 	}
-		// }
+				if ( !regMail.test(inputValue) ) {
+					formIdentity.setAttribute("data-error", printMessage("invalid-email"));
+				}
+				else {
+					formIdentity.setAttribute("data-error", printMessage("valid"));
+					formIdentity.setAttribute("data-valid", true);
+					inputIdentity.setAttribute("data-valid", true);
+				}
+			}
+			else {
+				formIdentity.setAttribute("data-error", printMessage("other"));
+			}
+		}
 
 	/*** VERIFY MAIL ***/
 
 	
 	/*** VERIFY BIRTHDATE ***/
 
-		// function verifyBirthdate (inputIdentity, textIdentity, formIdentity) {
+		function verifyBirthdate (inputIdentity, textIdentity, formIdentity) {
 
-		// 	let inputLength = inputIdentity.value.length;
-		// 	let inputValue = inputIdentity.value;
+			let inputLength = inputIdentity.value.length;
+			let inputValue = inputIdentity.value;
 
-		// 	initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
 
-		// 	if ( inputLength < 10 || inputLength > 10 ) {
-		// 		formIdentity.setAttribute("data-error", printMessage("invalid-birthdate", textIdentity));
-		// 	}
-		// 	else if ( inputLength === 10 ) {
+			if ( inputLength < 10 || inputLength > 10 ) {
+				formIdentity.setAttribute("data-error", printMessage("invalid-birthdate", textIdentity));
+			}
+			else if ( inputLength === 10 ) {
 
-		// 		let newBirthdate = inputValue.split('-').reverse().join('-');
+				let newBirthdate = inputValue.split('-').reverse().join('-');
 
-		// 		if ( regBirth.test(newBirthdate) == false ) {
-		// 			formIdentity.setAttribute("data-error", printMessage("invalid-birthdate"));
-		// 		}
-		// 		else {
-		// 			formIdentity.setAttribute("data-error", printMessage("valid"));
-		// 			formIdentity.setAttribute("data-valid", true);
-		// 			inputIdentity.setAttribute("data-valid", true);
-		// 		}
-		// 	}
-		// 	else {
-		// 		formIdentity.setAttribute("data-error", printMessage("other"));
-		// 	}
+				if ( regBirth.test(newBirthdate) == false ) {
+					formIdentity.setAttribute("data-error", printMessage("invalid-birthdate"));
+				}
+				else {
+					formIdentity.setAttribute("data-error", printMessage("valid"));
+					formIdentity.setAttribute("data-valid", true);
+					inputIdentity.setAttribute("data-valid", true);
+				}
+			}
+			else {
+				formIdentity.setAttribute("data-error", printMessage("other"));
+			}
 			
-		// }
+		}
 
 	/*** VERIFY BIRTHDATE ***/
 
@@ -293,10 +293,10 @@
 
 	/*** CALLS  ***/
 
-		//firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
-		//lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
-		//mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
-		//birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
+		firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
+		lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
+		mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
+		birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
 		quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
 
 	/*** CALLS  ***/
