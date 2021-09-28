@@ -114,7 +114,7 @@
 		function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
 
 			let inputValue = parseInt(inputIdentity.value.length);
-			let inputWord = inputIdentity.value;
+			let inputWord = toString(inputIdentity.value);
 
 			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
 			formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
