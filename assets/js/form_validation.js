@@ -183,6 +183,7 @@
 			let inputValue = inputIdentity.value;
 
 			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+			formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
 
 			if ( inputLength < 10 || inputLength > 10 ) {
 				formIdentity.setAttribute("data-error", printMessage("invalid-birthdate", textIdentity));
@@ -218,11 +219,8 @@
 
 			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
 
-			console.log( inputValue, typeof inputValue );
-
 			if ( inputLength < 0 || isNaN(inputValue)  ) {
-				formIdentity.setAttribute("data-error", printMessage("empty"));
-				console.log( inputValue );
+				formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
 			}
 			else if ( inputValue > 99 ) {
 				formIdentity.setAttribute("data-error", printMessage("tohigh-quantity"));
