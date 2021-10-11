@@ -111,10 +111,11 @@
 
 	/*** VERIFY IDENTITY ***/
 
+		// When i use toString on inputWord enter data, the if else test with regIdentity don't work correctly
 		function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
 
 			let inputValue = parseInt(inputIdentity.value.length);
-			let inputWord = toString(inputIdentity.value);
+			let inputWord = inputIdentity.value;
 
 			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
 			formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
@@ -291,11 +292,11 @@
 
 	/*** CALLS  ***/
 
-		firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
-		lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
-		mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
-		birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
-		quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
+		// firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
+		// lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
+		// mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
+		// birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
+		// quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
 
 	/*** CALLS  ***/
 
