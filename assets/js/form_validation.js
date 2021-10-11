@@ -9,8 +9,8 @@
 			const formMail      = document.querySelector(' .formData[data-input="email"] ');
 			const formBirthdate = document.querySelector(' .formData[data-input="birthdate"] ');
 			const formQuantity  = document.querySelector(' .formData[data-input="quantity"] ');
-			const formLocation1 = document.querySelector(' .formData[data-input="location"] ');
-			const formCheckbox1 = document.querySelector(' .formData[data-input="checkbox1"] ');
+			const formLocation  = document.querySelector(' .formData[data-input="location"] ');
+			const formCheckbox  = document.querySelector(' .formData[data-input="checkbox"] ');
 
 		/*** FORM DATA ***/
 
@@ -242,11 +242,20 @@
 
 	/*** VERIFY CITYS ***/
 
-		// function verifyCitys (input) {
-		// 	locations.forEach(element => {
-		// 		console.log( locationsNumbers[element] );
-		// 	});
-		// }
+		function verifyCitys (inputIdentity, textIdentity, formIdentity) {
+			locations.forEach(element => {
+				if ( element.indeterminate = true ) {
+					console.log(formIdentity);
+					formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+				}
+				else {
+					formIdentity.setAttribute("data-valid", true);
+					formIdentity.setAttribute("data-error", printMessage("valid"));
+				}
+
+
+			});
+		}
 
 	/*** VERIFY CITYS ***/
 
@@ -297,6 +306,8 @@
 		// mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
 		// birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
 		// quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
+		locations.addEventListener('input', function(){ verifyCitys(locations, 'Villes', formLocation) } , true );
+		verifyCitys();
 
 	/*** CALLS  ***/
 
