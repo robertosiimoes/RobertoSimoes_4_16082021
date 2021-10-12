@@ -252,8 +252,6 @@
 					formIdentity.setAttribute("data-valid", true);
 					formIdentity.setAttribute("data-error", printMessage("valid"));
 				}
-
-
 			});
 		}
 
