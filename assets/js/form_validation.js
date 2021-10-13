@@ -243,16 +243,37 @@
 	/*** VERIFY CITYS ***/
 
 		function verifyCitys (inputIdentity, textIdentity, formIdentity) {
-			locations.forEach(element => {
-				if ( element.indeterminate = true ) {
-					console.log(formIdentity);
-					formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
-				}
-				else {
-					formIdentity.setAttribute("data-valid", true);
-					formIdentity.setAttribute("data-error", printMessage("valid"));
-				}
-			});
+
+			// let inputLength = inputIdentity.value.length;
+			// let inputValue = parseInt(inputIdentity.value.trim());
+
+			//initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+			formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+
+			if (formIdentity != null || formIdentity != undefined) {
+
+				locations.forEach(element => {
+
+					element.addEventListener("change", function(event) {
+
+						// var item = event.target.value;
+						// console.log(item);
+
+						if ( element.indeterminate = true ) {
+							console.log(formIdentity);
+							formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+						}
+						else {
+							formIdentity.setAttribute("data-valid", true);
+							formIdentity.setAttribute("data-error", printMessage("valid"));
+						}
+
+					});
+
+				});
+
+			}
+			
 		}
 
 	/*** VERIFY CITYS ***/
@@ -304,8 +325,7 @@
 		// mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
 		// birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
 		// quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
-		locations.addEventListener('input', function(){ verifyCitys(locations, 'Villes', formLocation) } , true );
-		verifyCitys();
+		verifyCitys(locations, "Villes" , formLocation);
 
 	/*** CALLS  ***/
 
