@@ -285,22 +285,13 @@
 	/*** VERIFY CITYS ***/
 
 
-	/*** VERIFY CHECKBOX LEGAL ***/
+	/*** VERIFY CHECKBOXS ***/
 
-		// function verifyCheckboxLegal (input) {
-			
-		// }
+		function verifyCheckboxs (input) {
+			checkboxs
+		}
 
-	/*** VERIFY CHECKBOX LEGAL ***/
-
-
-	/*** VERIFY CHECKBOX NEWSLETTER ***/
-
-		// function verifyCheckboxNews (input) {
-			
-		// }
-
-	/*** VERIFY CHECKBOX NEWSLETTER ***/
+	/*** VERIFY CHECKBOXS ***/
 
 
 	/*** VERIFY CALLS ***/
@@ -332,6 +323,8 @@
 		birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
 		quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
 		verifyCitys(locations, "Villes" , formLocation);
+		checkboxs.addEventListener("change", function{ verifyCheckboxs(checkboxs, formCheckbox) }, true);
+
 
 	/*** CALLS  ***/
 
