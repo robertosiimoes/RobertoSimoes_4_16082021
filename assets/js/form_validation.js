@@ -94,6 +94,14 @@
 					messageToReturn = "Veuillez choisir une ou plusieurs villes";
 					return messageToReturn;
 					break;
+				case "invalid-checkbox":
+					messageToReturn = "Vous devez cocher la validation des conditions d'utilisation";
+					return messageToReturn;
+					break;
+				case "valid-checkbox":
+					messageToReturn = "La case de validation des conditions d'utilisation est bien cochée";
+					return messageToReturn;
+					break;
 				default:
 					break;
 			}
@@ -248,12 +256,6 @@
 
 		function verifyCitys (inputIdentity, textIdentity, formIdentity) {
 
-			// let inputLength = inputIdentity.value.length;
-			// let inputValue = parseInt(inputIdentity.value.trim());
-
-			//initializeField(inputIdentity, textIdentity, formIdentity, "empty");
-			//formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
-
 			if (formIdentity != null || formIdentity != undefined) {
 
 				locations.forEach(element => {
@@ -287,8 +289,53 @@
 
 	/*** VERIFY CHECKBOXS ***/
 
-		function verifyCheckboxs (input) {
-			checkboxs
+		function verifyCheckboxs (inputIdentity, formIdentity) {
+
+			checkboxs.forEach(element => {
+
+				element.addEventListener("change", function(event) {
+					
+					let checkbox1 = document.querySelector("checkbox1");
+					let checkbox2 = document.querySelector("checkbox2");
+
+					formIdentity.setAttribute("data-error-visible", true);
+
+					// Testing if the current checkbox is unchecked
+					if ( !this.checked ) {
+
+						// Testing if the current checkbox is the legal checkbox
+						if ( this.getAttribute("id") == "checkbox1" ) {
+
+							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
+						}
+						else {
+
+							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
+							return this;
+						}
+					}
+
+					// Testing if the current checkbox is checked
+					else {
+
+						// Testing if the current checkbox is the legal checkbox
+						if ( this.getAttribute("id") == "checkbox1" ) {
+
+							formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
+							this.checked == true;
+
+							return this;
+						}
+						else {
+							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
+							this.checked == true;
+							return this;
+						}
+					}
+				});
+
+			});
+
 		}
 
 	/*** VERIFY CHECKBOXS ***/
@@ -323,7 +370,7 @@
 		birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
 		quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
 		verifyCitys(locations, "Villes" , formLocation);
-		checkboxs.addEventListener("change", function{ verifyCheckboxs(checkboxs, formCheckbox) }, true);
+		verifyCheckboxs(checkboxs, formCheckbox);
 
 
 	/*** CALLS  ***/
