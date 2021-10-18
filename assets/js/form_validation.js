@@ -252,7 +252,7 @@
 			// let inputValue = parseInt(inputIdentity.value.trim());
 
 			//initializeField(inputIdentity, textIdentity, formIdentity, "empty");
-			formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
+			//formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
 
 			if (formIdentity != null || formIdentity != undefined) {
 
