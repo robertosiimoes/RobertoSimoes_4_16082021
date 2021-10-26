@@ -91,11 +91,15 @@
 					return messageToReturn;
 					break;
 				case "invalid-citys":
-					messageToReturn = "Veuillez choisir une ou plusieurs villes";
+					messageToReturn = "Veuillez choisir une ville";
 					return messageToReturn;
 					break;
 				case "invalid-checkbox":
 					messageToReturn = "Vous devez cocher la validation des conditions d'utilisation";
+					return messageToReturn;
+					break;
+				case "valid-citys":
+					messageToReturn = "Votre choix de ville a été retenu";
 					return messageToReturn;
 					break;
 				case "valid-checkbox":
@@ -262,18 +266,13 @@
 
 					element.addEventListener("change", function(event) {
 
-						// var item = event.target.value;
-						// console.log(item);
-
 						if ( element.indeterminate = true ) {
-							console.log(formIdentity);
-							formData.setAttribute("data-error-visible", true);
+							formIdentity.setAttribute("data-error-visible", true);
 							formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
 						}
 						else {
-							console.log(formIdentity);
 							formIdentity.setAttribute("data-valid", true);
-							formIdentity.setAttribute("data-error", printMessage("valid"));
+							formIdentity.setAttribute("data-error", printMessage("valid-citys"));
 						}
 
 					});
@@ -305,11 +304,9 @@
 
 						// Testing if the current checkbox is the legal checkbox
 						if ( this.getAttribute("id") == "checkbox1" ) {
-
 							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
 						}
 						else {
-
 							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
 							return this;
 						}
@@ -320,10 +317,8 @@
 
 						// Testing if the current checkbox is the legal checkbox
 						if ( this.getAttribute("id") == "checkbox1" ) {
-
 							formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
 							this.checked == true;
-
 							return this;
 						}
 						else {
