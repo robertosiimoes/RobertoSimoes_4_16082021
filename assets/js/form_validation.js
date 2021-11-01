@@ -294,20 +294,24 @@
 
 				element.addEventListener("change", function(event) {
 					
-					let checkbox1 = document.querySelector("checkbox1");
-					let checkbox2 = document.querySelector("checkbox2");
+					let checkbox1 = document.querySelector("#checkbox1");
+					let checkbox2 = document.querySelector("#checkbox2");
 
-					formIdentity.setAttribute("data-error-visible", true);
+					console.log(checkbox1);
+
+					//formIdentity.setAttribute("data-error-visible", true);
 
 					// Testing if the current checkbox is unchecked
 					if ( !this.checked ) {
 
 						// Testing if the current checkbox is the legal checkbox
 						if ( this.getAttribute("id") == "checkbox1" ) {
-							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
+							console.log("Checkbox 1 checked");
+							//formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
 						}
 						else {
-							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
+							console.log("Checkbox 1 unckecked");
+							//formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
 							return this;
 						}
 					}
@@ -317,12 +321,14 @@
 
 						// Testing if the current checkbox is the legal checkbox
 						if ( this.getAttribute("id") == "checkbox1" ) {
-							formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
+							console.log("Checkbox 2 checked");
+							//formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
 							this.checked == true;
 							return this;
 						}
 						else {
-							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
+							console.log("Checkbox 2 unchecked");
+							//formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
 							this.checked == true;
 							return this;
 						}
