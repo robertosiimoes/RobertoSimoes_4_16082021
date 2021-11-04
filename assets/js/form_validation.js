@@ -297,22 +297,22 @@
 					let checkbox1 = document.querySelector("#checkbox1");
 					let checkbox2 = document.querySelector("#checkbox2");
 
-					console.log(checkbox1);
+					//console.log(checkbox1);
 
-					//formIdentity.setAttribute("data-error-visible", true);
+					formIdentity.setAttribute("data-error-visible", true);
 
 					// Testing if the current checkbox is unchecked
-					if ( !this.checked ) {
+					if ( !element.checked ) {
 
 						// Testing if the current checkbox is the legal checkbox
-						if ( this.getAttribute("id") == "checkbox1" ) {
+						if ( element.getAttribute("id") == "checkbox1" ) {
 							console.log("Checkbox 1 checked");
 							//formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
 						}
 						else {
 							console.log("Checkbox 1 unckecked");
 							//formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
-							return this;
+							return element;
 						}
 					}
 
@@ -320,17 +320,17 @@
 					else {
 
 						// Testing if the current checkbox is the legal checkbox
-						if ( this.getAttribute("id") == "checkbox1" ) {
+						if ( element.getAttribute("id") == "checkbox1" ) {
 							console.log("Checkbox 2 checked");
 							//formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
-							this.checked == true;
-							return this;
+							element.checked == true;
+							return element;
 						}
 						else {
 							console.log("Checkbox 2 unchecked");
 							//formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
-							this.checked == true;
-							return this;
+							element.checked == true;
+							return element;
 						}
 					}
 				});
