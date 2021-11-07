@@ -49,66 +49,28 @@
 
 	/*** PRINT MESSAGE ***/
 
-		function printMessage(statut, text) {
+		function printMessage(key, text) {
 
-			let messageToReturn = "";
+			let messageToReturn = {
+				"empty": "Le champ est vide, veuillez entrer votre " + text + " ",
+				"notvalid": "Le champ " + text + " doit avoir un minimum de 2 caractères",
+				"invalid": "Les caractères spéciaux et les chiffres ne sont pas autorisés",
+				"valid" : "Le champ est bien rempli",
+				"other" : "Le champ a rencontré une erreur imprévue",
+				"invalid-birthdate" : "Veuillez saisir une date de naissance valide au format jj / mm / aaaa",
+				"invalid-email" : "Veuillez saisir un email au format valide",
+				"invalid-quantity" : "Veuillez entrer une valeur numérique pour le nombre de tournois",
+				"tohigh-quantity" : "Veuillez entrer un nombre de tournois compris entre 0 et 99",
+				"invalid-citys" : "Veuillez choisir une ville",
+				"valid-citys" : "Votre choix de ville a été retenu",
+				"invalid-checkbox" : "Vous devez cocher la validation des conditions d'utilisation",
+				"valid-checkbox" : "La case de validation des conditions d'utilisation est bien cochée",
+				"valid-newsletter" : "La case de newsletter a bien été cochée",
+				"invalid-newsletter" : "La case de newsletter a bien été decochée",
+				"error-script" : "Erreur de script"
+			};
 
-			switch (statut) {
-				case "empty":
-					messageToReturn = "Le champ est vide, veuillez entrer votre " + text.toLowerCase() + " ";
-					return messageToReturn;
-					break;
-				case "notvalid":
-					messageToReturn = "Le champ " + text + " doit avoir un minimum de 2 caractères";
-					return messageToReturn;
-					break;
-				case "invalid":
-					messageToReturn = "Les caractères spéciaux et les chiffres ne sont pas autorisés";
-					return messageToReturn;
-					break;
-				case "valid":
-					messageToReturn = "Le champ est bien rempli";
-					return messageToReturn;
-					break;
-				case "other":
-					messageToReturn = "Le champ a rencontré une erreur imprévue";
-					return messageToReturn;
-					break;
-				case "invalid-birthdate":
-					messageToReturn = "Veuillez saisir une date de naissance valide au format jj / mm / aaaa";
-					return messageToReturn;
-					break;
-				case "invalid-email":
-					messageToReturn = "Veuillez saisir un email au format valide";
-					return messageToReturn;
-					break;
-				case "invalid-quantity":
-					messageToReturn = "Veuillez entrer une valeur numérique pour le nombre de tournois";
-					return messageToReturn;
-					break;
-				case "tohigh-quantity":
-					messageToReturn = "Veuillez entrer un nombre de tournois compris entre 0 et 99";
-					return messageToReturn;
-					break;
-				case "invalid-citys":
-					messageToReturn = "Veuillez choisir une ville";
-					return messageToReturn;
-					break;
-				case "invalid-checkbox":
-					messageToReturn = "Vous devez cocher la validation des conditions d'utilisation";
-					return messageToReturn;
-					break;
-				case "valid-citys":
-					messageToReturn = "Votre choix de ville a été retenu";
-					return messageToReturn;
-					break;
-				case "valid-checkbox":
-					messageToReturn = "La case de validation des conditions d'utilisation est bien cochée";
-					return messageToReturn;
-					break;
-				default:
-					break;
-			}
+			return messageToReturn[key];
 		}
 
 	/*** PRINT MESSAGE ***/
@@ -116,6 +78,7 @@
 
 	/*** INITIALIZE FIELD ***/
 
+		// A REVOIR
 		function initializeField(input, text, formData, message) {
 			formData.setAttribute("data-error-visible", true);
 			formData.setAttribute("data-valid", false);
@@ -127,6 +90,7 @@
 
 	/*** VERIFY IDENTITY ***/
 
+		// A REVOIR
 		// When i use toString on inputWord enter data, the if else test with regIdentity don't work correctly
 		function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
 
@@ -260,26 +224,23 @@
 
 		function verifyCitys (inputIdentity, textIdentity, formIdentity) {
 
-			if (formIdentity != null || formIdentity != undefined) {
+			locations.forEach(element => {
 
-				locations.forEach(element => {
+				element.addEventListener("change", function(event) {
 
-					element.addEventListener("change", function(event) {
-
-						if ( element.indeterminate = true ) {
-							formIdentity.setAttribute("data-error-visible", true);
-							formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
-						}
-						else {
-							formIdentity.setAttribute("data-valid", true);
-							formIdentity.setAttribute("data-error", printMessage("valid-citys"));
-						}
-
-					});
+					if ( element.indeterminate == true ) {
+						formIdentity.setAttribute("data-error-visible", true);
+						formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
+					}
+					else {
+						formIdentity.setAttribute("data-valid", true);
+						formIdentity.setAttribute("data-error", printMessage("valid-citys"));
+						return element;
+					}
 
 				});
 
-			}
+			});
 			
 		}
 
@@ -293,45 +254,44 @@
 			checkboxs.forEach(element => {
 
 				element.addEventListener("change", function(event) {
-					
-					let checkbox1 = document.querySelector("#checkbox1");
-					let checkbox2 = document.querySelector("#checkbox2");
-
-					//console.log(checkbox1);
 
 					formIdentity.setAttribute("data-error-visible", true);
 
-					// Testing if the current checkbox is unchecked
-					if ( !element.checked ) {
+					// Testing if the current checkbox is the legal checkbox
+					if ( element.getAttribute("id") == "checkbox1" ) {
 
-						// Testing if the current checkbox is the legal checkbox
-						if ( element.getAttribute("id") == "checkbox1" ) {
-							console.log("Checkbox 1 checked");
-							//formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
+						if ( element.checked == true ) {
+							formIdentity.setAttribute("data-valid", true);
+							formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
+							return element;
 						}
 						else {
-							console.log("Checkbox 1 unckecked");
-							//formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
+							formIdentity.setAttribute("data-valid", false);
+							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
+							element.checked == false;
 							return element;
 						}
 					}
 
-					// Testing if the current checkbox is checked
-					else {
+					//Testing if the current checkbox is the newsletter checkbox
+					else if ( element.getAttribute("id") == "checkbox2" ) {
 
-						// Testing if the current checkbox is the legal checkbox
-						if ( element.getAttribute("id") == "checkbox1" ) {
-							console.log("Checkbox 2 checked");
-							//formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
-							element.checked == true;
+						if ( element.checked == true ) {
+							formIdentity.setAttribute("data-valid", true);
+							formIdentity.setAttribute("data-error", printMessage("valid-newsletter"));
 							return element;
 						}
 						else {
-							console.log("Checkbox 2 unchecked");
-							//formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
-							element.checked == true;
+							formIdentity.setAttribute("data-valid", false);
+							formIdentity.setAttribute("data-error", printMessage("invalid-newsletter"));
+							element.checked == false;
 							return element;
 						}
+					}
+
+					// Testing if you have error on script
+					else {
+						console.log( printMessage("error-script") );
 					}
 				});
 
@@ -372,7 +332,6 @@
 		quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
 		verifyCitys(locations, "Villes" , formLocation);
 		verifyCheckboxs(checkboxs, formCheckbox);
-
 
 	/*** CALLS  ***/
 
