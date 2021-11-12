@@ -29,7 +29,7 @@
 			const checkboxs = document.querySelectorAll(" .checkbox-input[type='checkbox'] ");
 
 			// Buttons for submitting form
-			const btnSubmit = document.querySelector(".btn-submit");
+			const btnSubmit = document.querySelector(" .btn-submit ");
 		
 		/*** INPUTS AND BUTTONS ***/
 
@@ -115,6 +115,7 @@
 					formIdentity.setAttribute("data-error", printMessage("valid"));
 					formIdentity.setAttribute("data-valid", true);
 					inputIdentity.setAttribute("data-valid", true);
+					return true;
 				}
 			}
 			else {
@@ -146,6 +147,7 @@
 					formIdentity.setAttribute("data-error", printMessage("valid"));
 					formIdentity.setAttribute("data-valid", true);
 					inputIdentity.setAttribute("data-valid", true);
+					return true;
 				}
 			}
 			else {
@@ -180,6 +182,7 @@
 					formIdentity.setAttribute("data-error", printMessage("valid"));
 					formIdentity.setAttribute("data-valid", true);
 					inputIdentity.setAttribute("data-valid", true);
+					return true;
 				}
 			}
 			else {
@@ -210,6 +213,7 @@
 				formIdentity.setAttribute("data-error", printMessage("valid"));
 				formIdentity.setAttribute("data-valid", true);
 				inputIdentity.setAttribute("data-valid", true);
+				return true;
 			}
 			else {
 				formIdentity.setAttribute("data-error", printMessage("other"));
@@ -226,16 +230,19 @@
 
 			locations.forEach(element => {
 
+				// Checked or not checked
 				element.addEventListener("change", function(event) {
 
-					if ( element.indeterminate == true ) {
+					formIdentity.setAttribute("data-error-visible", true);
+
+					if ( element.checked == false || !element.hasAttribute("checked") ) {
 						formIdentity.setAttribute("data-error-visible", true);
 						formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
 					}
 					else {
 						formIdentity.setAttribute("data-valid", true);
 						formIdentity.setAttribute("data-error", printMessage("valid-citys"));
-						return element;
+						return true;
 					}
 
 				});
@@ -263,13 +270,12 @@
 						if ( element.checked == true ) {
 							formIdentity.setAttribute("data-valid", true);
 							formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
-							return element;
+							return true;
 						}
 						else {
 							formIdentity.setAttribute("data-valid", false);
 							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
 							element.checked == false;
-							return element;
 						}
 					}
 
@@ -279,13 +285,11 @@
 						if ( element.checked == true ) {
 							formIdentity.setAttribute("data-valid", true);
 							formIdentity.setAttribute("data-error", printMessage("valid-newsletter"));
-							return element;
 						}
 						else {
 							formIdentity.setAttribute("data-valid", false);
 							formIdentity.setAttribute("data-error", printMessage("invalid-newsletter"));
 							element.checked == false;
-							return element;
 						}
 					}
 
@@ -304,26 +308,50 @@
 
 	/*** VERIFY CALLS ***/
 
-		// function verifyCalls () {
+		function verifyCalls() {
 
-		// }
+			let verifFirstname = verifyIdentity(firstname, 'Prénom', formFirstname);
+			let verifLastname = verifyIdentity(lastname, 'Nom', formLastname);
+			let verifMail = verifyMail(mail, 'Email', formMail);
+			let verifBirth = verifyBirthdate(birthdate, 'Date de naissance', formBirthdate);
+			let verifQuantity = verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity);
+			let verifCitys = verifyCitys(locations, "Villes" , formLocation);
+			let verifCheckboxs = verifyCheckboxs(checkboxs, formCheckbox);
+
+			if( verifFirstname == true && verifLastname == true && verifMail == true && verifBirth == true && verifQuantity == true && verifCitys == true && verifCheckboxs == true ) {
+				console.log("All function are true, let's go ! ");
+				return true;
+			}
+			else {
+				console.log("Very bad ! An error as appeared !");
+			}
+		}
 
 	/*** VERIFY CALLS ***/
 
 
 	/*** VERIFY FORM SUBMISSION ***/
 
-		// function formSubmit() {
+		function formSubmit() {
 
-		// 	btnSubmit.addEventListener('submit', function(event) {
-		// 		event.preventDefault();
-		// 	});
-		// }
+			btnSubmit.addEventListener('click', function(event) {
+
+				event.preventDefault();
+
+				// Test pour vérifier que toutes les fonctions renvoient bien true
+				if ( verifyCalls() == true ) {
+					console.log("Submit this form");
+				}
+				else {
+					console.log("Don't submit this form");
+				}
+			});
+		}
 
 	/*** VERIFY FORM SUBMISSION  ***/
 
 
-	/*** CALLS  ***/
+	/*** CALLS ***/
 
 		firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
 		lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
@@ -332,7 +360,8 @@
 		quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
 		verifyCitys(locations, "Villes" , formLocation);
 		verifyCheckboxs(checkboxs, formCheckbox);
+		formSubmit();
 
-	/*** CALLS  ***/
+	/*** CALLS ***/
 
 /*** VALIDATE FORM MODAL ***/
