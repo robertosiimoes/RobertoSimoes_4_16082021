@@ -31,40 +31,42 @@
 	<meta name="theme-color" content="#ffffff">
 	</head>
 	<body>
-		<div class="topnav" id="myTopnav">
-			<div class="header-logo">
-				<img alt="logo" src="assets/images/logo.png" width="auto" height="auto">
+		<header class="o-header" id="o-header">
+			<div class="o-header__container">
+				<div class="o-header__logo">
+					<img alt="logo" src="assets/images/logo.png" width="auto" height="auto">
+				</div>
+				<nav class="o-header__nav">
+					<a href="#" class="active">
+						<span>Accueil</span>
+					</a>
+					<a href="#">
+						<span>Détails de l'évènement</span>
+					</a>
+					<a href="#">
+						<span>À propos</span>
+					</a>
+					<a href="#">
+						<span>Contact</span>
+					</a>
+					<a href="#">
+						<span>Évènements passés</span>
+					</a>
+					<a href="javascript:void(0);" class="icon" onclick="editNav()">
+						<i class="fa fa-bars"></i>
+					</a>
+				</nav>
 			</div>
-			<div class="main-navbar">
-				<a href="#" class="active">
-					<span>Accueil</span>
-				</a>
-				<a href="#">
-					<span>Détails de l'évènement</span>
-				</a>
-				<a href="#">
-					<span>À propos</span>
-				</a>
-				<a href="#">
-					<span>Contact</span>
-				</a>
-				<a href="#">
-					<span>Évènements passés</span>
-				</a>
-				<a href="javascript:void(0);" class="icon" onclick="editNav()">
-					<i class="fa fa-bars"></i>
-				</a>
-			</div>
-		</div>
+		</header>
 		<main>
 			<!-- HERO -->
-			<div class="hero-section">
-				<div class="hero-content">
-					<h1 class="hero-headline">Marathon national<br> de jeux vidéos</h1>
-					<p class="hero-text"> Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !</p>
+			<div class="o-hero">
+				<div class="o-hero__content">
+					<h1 class="o-hero__headline">Marathon national<br> de jeux vidéos</h1>
+					<p class="o-hero__text"> Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !</p>
 					<button class="btn-signup modal-btn">Je m'inscris</button>
 				</div>
-				<div class="hero-img">
+				<div class="o-hero__img">
 					<img src="assets/images/bg_img.jpg" alt="img">
 				</div>
 				<button class="btn-signup modal-btn">Je m'inscris</button>
@@ -157,8 +159,8 @@
 		</main>
 
 		<!-- FOOTER -->
-		<footer>
-			<p class="copyrights">Copyright 2014 - 2021, GameOn Inc.</p>
+		<footer class="o-footer">
+			<p class="o-footer__copyrights">Copyright 2014 - 2021, GameOn Inc.</p>
 		</footer>
 
 		<!-- SCRIPTS -->

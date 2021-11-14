@@ -230,12 +230,11 @@
 
 			locations.forEach(element => {
 
-				// Checked or not checked
 				element.addEventListener("change", function(event) {
 
 					formIdentity.setAttribute("data-error-visible", true);
 
-					if ( element.checked == false || !element.hasAttribute("checked") ) {
+					if ( !element.hasAttribute("checked") || element.checked == false ) {
 						formIdentity.setAttribute("data-error-visible", true);
 						formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
 					}
@@ -319,7 +318,7 @@
 			let verifCheckboxs = verifyCheckboxs(checkboxs, formCheckbox);
 
 			if( verifFirstname == true && verifLastname == true && verifMail == true && verifBirth == true && verifQuantity == true && verifCitys == true && verifCheckboxs == true ) {
-				console.log("All function are true, let's go ! ");
+				console.log("All functions are true, let's go ! ");
 				return true;
 			}
 			else {
@@ -337,6 +336,7 @@
 			btnSubmit.addEventListener('click', function(event) {
 
 				event.preventDefault();
+				event.stopPropagation();
 
 				// Test pour vérifier que toutes les fonctions renvoient bien true
 				if ( verifyCalls() == true ) {

@@ -12,11 +12,11 @@
 
 	// FUNCTION TO EDIT NAV
 	function editNav() {
-		var x = document.getElementById("myTopnav");
-		if (x.className === "topnav") {
+		var x = document.getElementById("o-header");
+		if (x.className === "o-header") {
 			x.className += " responsive";
 		} else {
-			x.className = "topnav";
+			x.className = "o-header";
 		}
 	}
 

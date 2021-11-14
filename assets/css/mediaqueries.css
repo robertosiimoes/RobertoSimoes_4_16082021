@@ -58,26 +58,26 @@
 
 		@media screen and (max-width: 768px) {
 
-			.topnav a {
+			.o-header a {
 				display: none;
 			}
 
-			.topnav a.icon {
+			.o-header a.icon {
 				float: right;
 				display: block;
 			}
 
-			.topnav.responsive {
+			.o-header.responsive {
 				position: relative;
 			}
 
-			.topnav.responsive .icon {
+			.o-header.responsive .icon {
 				position: absolute;
 				right: 0;
 				top: 0;
 			}
 
-			.topnav.responsive a {
+			.o-header.responsive a {
 				float: none;
 				display: block;
 				text-align: left;
@@ -92,11 +92,11 @@
 
 		@media screen and (max-width: 540px) {
 
-			.topnav a {
+			.o-header a {
 				display: none;
 			}
 
-			.topnav a.icon {
+			.o-header a.icon {
 				float: right;
 				display: block;
 				margin-top: -15px;
