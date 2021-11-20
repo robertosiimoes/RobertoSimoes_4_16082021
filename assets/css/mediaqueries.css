@@ -1,44 +1,108 @@
 /*** MEDIAQUERIES ***/
 
+
+	/*** ***/
+
+		@media screen and (max-width: 1240px) {
+
+			.o-header {
+				padding: 33px 30px 28px;
+			}
+
+			.o-header.responsive {
+				position: relative;
+			}
+
+			.o-header__container {
+				width: 100%;
+			}
+
+			.o-header__logo {
+				width: 103px;
+			}
+
+			.o-header__nav {
+				height: auto;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 9999;
+				background: var(--dark);
+				width: 100%;
+				padding: 21px 15px;
+				display: block;
+			}
+
+			.o-header.responsive .o-header__nav {
+				transform: translateY(85px);
+				opacity: 1;
+				transition: all 350ms ease-in-out;
+			}
+
+			.o-header:not(.responsive) .o-header__nav {
+				transform: translateY(-100%);
+				opacity: 0;
+				transition: all 350ms ease-in-out;
+			}
+
+			.o-header a:not(.icon) {
+				color: var(--white);
+				width: 100%;
+				display: block;
+				text-align: left;
+				padding: 7px 14px;
+				margin: 0;
+				margin-top: 7px;
+			}
+
+			.o-header a.icon {
+				display: block;
+				order: 1;
+				padding: 0;
+				margin: 0;
+			}
+			
+		}
+
 	/*** 800PX ***/
 
 		@media screen and (max-width: 800px) {
 
-			.hero-section {
+			.o-hero {
 				display: block;
 				box-shadow: unset;
 			}
 
-			.hero-content {
+			.o-hero__content {
 				background: var(--white);
 				color: var(--dark);
 				padding: 20px;
 			}
 
-			.hero-content::after {
+			.o-hero__content::after {
 				content: unset;
 			}
 
-			.hero-content .btn-signup {
+			.o-hero__content .btn-signup {
 				display: none;
 			}
 
-			.hero-headline {
+			.o-hero__headline {
 				font-size: 4.5rem;
 				white-space: normal;
 			}
 
-			.hero-text {
+			.o-hero__text {
 				width: unset;
 				font-size: 1.5rem;
 			}
 
-			.hero-img img {
+			.o-hero__img img {
 				border-radius: 10px;
 				margin-top: 40px;
 			}
 
-			.hero-section > .btn-signup {
+			.o-hero > .btn-signup {
 				display: block;
 				margin: 32px auto 10px;
 				padding: 12px 35px;
@@ -52,58 +116,5 @@
 		}
 
 	/*** 800PX ***/
-
-
-	/*** 768PX ***/
-
-		@media screen and (max-width: 768px) {
-
-			.o-header a {
-				display: none;
-			}
-
-			.o-header a.icon {
-				float: right;
-				display: block;
-			}
-
-			.o-header.responsive {
-				position: relative;
-			}
-
-			.o-header.responsive .icon {
-				position: absolute;
-				right: 0;
-				top: 0;
-			}
-
-			.o-header.responsive a {
-				float: none;
-				display: block;
-				text-align: left;
-			}
-
-		}
-
-	/*** 768PX ***/
-
-
-	/*** 540PX ***/
-
-		@media screen and (max-width: 540px) {
-
-			.o-header a {
-				display: none;
-			}
-
-			.o-header a.icon {
-				float: right;
-				display: block;
-				margin-top: -15px;
-			}
-
-		}
-
-	/*** 540PX ***/
 
 /*** MEDIAQUERIES ***/

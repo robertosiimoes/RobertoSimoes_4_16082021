@@ -1,0 +1,64 @@
+/*** INDEX ***/
+
+		.o-hero {
+			background: var(--dark-lighter);
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+			align-items: center;
+			margin: auto;
+			border-radius: 10px;
+			box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
+			height: 657px;
+			width: var(--desktop-size);
+			position: relative;
+		}
+	
+		.o-hero__content {
+			padding: 51px 67px;
+			position: relative;
+			text-align: left;
+			min-width: 424px;
+			z-index: 1;
+		}
+
+		.o-hero__headline,
+		.o-hero__text {
+			color: var(--white);
+		}
+	
+		.o-hero__headline {
+			font-size: 96px;
+			font-weight: normal;
+			line-height: 124px;
+			white-space: nowrap;
+		}
+	
+		.o-hero__text {
+			width: 146%;
+			font-weight: normal;
+			margin-top: 73px;
+			padding: 0;
+		}
+
+		.o-hero__img {
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 100%;
+			width: 768px;
+		}
+	
+		.o-hero__img img {
+			width: 100%;
+			height: inherit;
+			object-fit: cover;
+			display: block;
+			padding: 0;
+		}
+	
+		.o-hero > .btn-signup {
+			display: none;
+		}
+
+	/*** INDEX ***/

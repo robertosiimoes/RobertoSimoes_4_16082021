@@ -5,7 +5,7 @@
 		--font-slab: var(--font-default);
 		--modal-duration: 0.8s;
 		--max-width : 1440px;
-		--desktop-size: 1300px;
+		--desktop-size: 1240px;
 		--large-tablet-size: 960px;
 		--tablet-size: 768px;
 		--large-mobile-size: 600px;
@@ -23,19 +23,17 @@
 		--green : #279e7a;
 	}
 
-	* {
+	*, *::before, *::after {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-ms-box-sizing: border-box;
 		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-	}
+	  }
 
 	body {
-		display: flex;
-		flex-direction: column;
 		font-family: var(--font-default);
 		font-size: 18px;
-		margin: auto;
-		width: var(--max-width);
 	}
 
 	/*** HEADER ***/
@@ -54,6 +52,21 @@
 			margin: auto;
 		}
 
+		.o-header__logo {
+			width: 277px;
+		}
+
+		.o-header__logo img {
+			width: inherit;
+		}
+
+		.o-header__nav {
+			width: calc(100% - 277px);
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: flex-end;
+		}
+
 		.o-header a {
 			color: var(--dark);
 			font-family: "DM Sans", sans-serif;
@@ -63,19 +76,22 @@
 			line-height: 24px;
 			text-align: center;
 			text-decoration: none;
-
 			display: block;
-			float: left;
-			
 			padding: 12px 12px;
 			margin: 5px;
-			
+			transition: all ease 350ms;
+			border-radius: 15px;
 		}
 
-		.o-header a:hover {
+		.o-header a:not(.icon):hover {
 			background-color: var(--red);
 			color: var(--white);
-			border-radius: 15px;
+			transition: all ease-in-out 350ms;
+		}
+
+		.o-header a.icon i:hover {
+			color: var(--dark);
+			transition: all ease-in-out 350ms;
 		}
 
 		.o-header a.active {
@@ -88,17 +104,11 @@
 			display: none;
 		}
 
-	/*** END HEADER ***/
-
-
-	/*** MAIN ***/
-
-		.o-hero {
-			margin: auto;
-			width: var(--desktop-size);
+		.o-header .icon i {
+			color: var(--red);
 		}
 
-	/*** MAIN ***/
+	/*** END HEADER ***/
 
 
 	/*** FOOTER ***/
