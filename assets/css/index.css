@@ -15,7 +15,7 @@
 		}
 	
 		.o-hero__content {
-			padding: 51px 67px;
+			padding-left: 67px;
 			position: relative;
 			text-align: left;
 			min-width: 424px;
@@ -35,8 +35,6 @@
 		}
 	
 		.o-hero__text {
-			width: 146%;
-			font-weight: normal;
 			margin-top: 73px;
 			padding: 0;
 		}
