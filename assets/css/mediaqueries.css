@@ -86,7 +86,48 @@
 	/*** 1024 PX ***/
 
 		@media screen and (max-width: 1024px) {
-			/* Mettre ici le CSS pour rendre responsive la section HERO */
+			.o-hero {
+				background: var(--white);
+				flex-flow: column wrap;
+				box-shadow: none;
+				height: auto;
+			}
+		
+			.o-hero__content {
+				padding-left: 0;
+				min-width: 100%;
+			}
+	
+			.o-hero__headline,
+			.o-hero__text {
+				color: var(--dark);
+			}
+		
+			.o-hero__headline {
+				font-size: 72px;
+				line-height: 86px;
+			}
+		
+			.o-hero__text {
+				margin-top: 35px;
+				padding: 0;
+			}
+	
+			.o-hero__img {
+				position: static;
+				height: 537px;
+				width: 75%;
+				margin-top: 55px;
+				border-radius: 8px;
+			}
+		
+			.o-hero__img img {
+				border-radius: inherit;
+			}
+		
+			.o-hero > .btn-signup {
+				display: none;
+			}
 		}
 
 	/*** 1024 PX ***/
