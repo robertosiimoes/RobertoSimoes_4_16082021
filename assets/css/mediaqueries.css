@@ -6,13 +6,14 @@
 
 			.o-header {
 				padding: 33px 30px 28px;
-				position: absolute;
+				position: fixed;
 				top: 0;
 				z-index: 9999;
+				background: var(--white);
 			}
 
 			.o-header.responsive {
-				position: relative;
+				position: fixed;
 			}
 
 			.o-header__container,
@@ -149,10 +150,6 @@
 	/*** 960 PX ***/
 
 		@media screen and (max-width: 960px) {
-
-			main {
-				padding: 0 30px;
-			}
 
 			.o-hero__img {
 				height: 437px;
