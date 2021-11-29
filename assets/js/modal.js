@@ -13,10 +13,13 @@
 	// FUNCTION TO EDIT NAV
 	function editNav() {
 		var x = document.getElementById("o-header");
+		var btn = document.querySelector(".o-btn__nav");
 		if (x.className === "o-header") {
 			x.className += " responsive";
+			btn.innerHTML = "<i class='fa fa-times'></i>";
 		} else {
 			x.className = "o-header";
+			btn.innerHTML = "<i class='fa fa-bars'></i>";
 		}
 	}
 
