@@ -21,6 +21,7 @@
 		--blue-background: rgba(26, 39, 156, 0.4);
 		--grey-light : #cccccc;
 		--green : #279e7a;
+		--transparent: transparent;
 	}
 
 	*, *::before, *::after {
