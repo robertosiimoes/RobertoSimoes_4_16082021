@@ -49,7 +49,7 @@
 
 	/*** PRINT MESSAGE ***/
 
-		function printMessage(key, text) {
+		function printMessage(key, text, city) {
 
 			let messageToReturn = {
 				"empty": "Le champ est vide, veuillez entrer votre " + text + " ",
@@ -78,7 +78,6 @@
 
 	/*** INITIALIZE FIELD ***/
 
-		// A REVOIR
 		function initializeField(input, text, formData, message) {
 			formData.setAttribute("data-error-visible", true);
 			formData.setAttribute("data-valid", false);
@@ -90,8 +89,6 @@
 
 	/*** VERIFY IDENTITY ***/
 
-		// A REVOIR
-		// When i use toString on inputWord enter data, the if else test with regIdentity don't work correctly
 		function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
 
 			let inputValue = parseInt(inputIdentity.value.length);
@@ -232,16 +229,19 @@
 
 				element.addEventListener("change", function(event) {
 
+					var city = event.target.value;
+
 					formIdentity.setAttribute("data-error-visible", true);
 
-					if ( !element.hasAttribute("checked") || element.checked == false ) {
-						formIdentity.setAttribute("data-error-visible", true);
-						formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
-					}
-					else {
+					if ( city !== undefined || city !== false || city !== null ) {
 						formIdentity.setAttribute("data-valid", true);
 						formIdentity.setAttribute("data-error", printMessage("valid-citys"));
 						return true;
+					}
+					else {
+						formIdentity.setAttribute("data-error-visible", true);
+						formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
+						return false;
 					}
 
 				});
@@ -305,17 +305,22 @@
 	/*** VERIFY CHECKBOXS ***/
 
 
+	/*** CALLS ***/
+
+		let verifFirstname = firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } );
+		let verifLastname = lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } );
+		let verifMail = mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } );
+		let verifBirth = birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } );
+		let verifQuantity = quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } );
+		let verifCitys = verifyCitys(locations, "Villes" , formLocation);
+		let verifCheckboxs = verifyCheckboxs(checkboxs, formCheckbox);
+
+	/*** CALLS ***/
+
+
 	/*** VERIFY CALLS ***/
 
 		function verifyCalls() {
-
-			let verifFirstname = verifyIdentity(firstname, 'Prénom', formFirstname);
-			let verifLastname = verifyIdentity(lastname, 'Nom', formLastname);
-			let verifMail = verifyMail(mail, 'Email', formMail);
-			let verifBirth = verifyBirthdate(birthdate, 'Date de naissance', formBirthdate);
-			let verifQuantity = verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity);
-			let verifCitys = verifyCitys(locations, "Villes" , formLocation);
-			let verifCheckboxs = verifyCheckboxs(checkboxs, formCheckbox);
 
 			if( verifFirstname == true && verifLastname == true && verifMail == true && verifBirth == true && verifQuantity == true && verifCitys == true && verifCheckboxs == true ) {
 				console.log("All functions are true, let's go ! ");
@@ -323,6 +328,7 @@
 			}
 			else {
 				console.log("Very bad ! An error as appeared !");
+				return false;
 			}
 		}
 
@@ -338,8 +344,10 @@
 				event.preventDefault();
 				event.stopPropagation();
 
+				let calls = verifyCalls();
+
 				// Test pour vérifier que toutes les fonctions renvoient bien true
-				if ( verifyCalls() == true ) {
+				if ( calls == true ) {
 					console.log("Submit this form");
 				}
 				else {
@@ -350,18 +358,6 @@
 
 	/*** VERIFY FORM SUBMISSION  ***/
 
-
-	/*** CALLS ***/
-
-		firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } , true);
-		lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } , true);
-		mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } , true );
-		birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } , true );
-		quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } , true );
-		verifyCitys(locations, "Villes" , formLocation);
-		verifyCheckboxs(checkboxs, formCheckbox);
-		formSubmit();
-
-	/*** CALLS ***/
+	formSubmit();
 
 /*** VALIDATE FORM MODAL ***/
