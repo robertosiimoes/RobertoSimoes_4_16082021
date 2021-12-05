@@ -49,7 +49,7 @@
 
 	/*** PRINT MESSAGE ***/
 
-		function printMessage(key, text, city) {
+		function printMessage(key, text) {
 
 			let messageToReturn = {
 				"empty": "Le champ est vide, veuillez entrer votre " + text + " ",
@@ -241,7 +241,6 @@
 					else {
 						formIdentity.setAttribute("data-error-visible", true);
 						formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
-						return false;
 					}
 
 				});
@@ -346,7 +345,8 @@
 
 				let calls = verifyCalls();
 
-				// Test pour vérifier que toutes les fonctions renvoient bien true
+				//console.log(calls);
+
 				if ( calls == true ) {
 					console.log("Submit this form");
 				}
