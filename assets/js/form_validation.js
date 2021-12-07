@@ -1,5 +1,7 @@
 /*** VALIDATE FORM MODAL ***/
 
+	var arrValidation = []; 
+
 	/*** DOM ELEMENS ***/
 
 		/*** FORM DATA ***/
@@ -113,6 +115,7 @@
 					formIdentity.setAttribute("data-error", printMessage("valid"));
 					formIdentity.setAttribute("data-valid", true);
 					inputIdentity.setAttribute("data-valid", true);
+					arrValidation.push(true);
 				}
 			}
 			else {
@@ -176,6 +179,7 @@
 						formIdentity.setAttribute("data-error", printMessage("valid"));
 						formIdentity.setAttribute("data-valid", true);
 						inputIdentity.setAttribute("data-valid", true);
+						arrValidation.push(true);
 					}
 				}
 				else {
@@ -214,6 +218,7 @@
 						formIdentity.setAttribute("data-error", printMessage("valid"));
 						formIdentity.setAttribute("data-valid", true);
 						inputIdentity.setAttribute("data-valid", true);
+						arrValidation.push(true);
 					}
 				}
 				else {
@@ -248,6 +253,7 @@
 					formIdentity.setAttribute("data-error", printMessage("valid"));
 					formIdentity.setAttribute("data-valid", true);
 					inputIdentity.setAttribute("data-valid", true);
+					arrValidation.push(true);
 				}
 				else {
 					formIdentity.setAttribute("data-error", printMessage("other"));
@@ -275,6 +281,7 @@
 					if ( city !== undefined || city !== false || city !== null ) {
 						formIdentity.setAttribute("data-valid", true);
 						formIdentity.setAttribute("data-error", printMessage("valid-citys"));
+						arrValidation.push(true);
 					}
 					else {
 						formIdentity.setAttribute("data-error-visible", true);
@@ -307,6 +314,7 @@
 						if ( element.checked == true ) {
 							formIdentity.setAttribute("data-valid", true);
 							formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
+							arrValidation.push(true);
 						}
 						else {
 							formIdentity.setAttribute("data-valid", false);
@@ -359,44 +367,33 @@
 		function formSubmit() {
 
 			btnSubmit.addEventListener('click', function(event) {
-
+				
 				event.preventDefault();
 				event.stopPropagation();
 
-				let arrData = [formFirstname, formLastname, formMail, formBirthdate, formQuantity, formLocation, formCheckbox];
+				let dataFirstname = formFirstname.dataset.valid;
+				let dataLastname  = formLastname.dataset.valid;
+				let dataMail      = formMail.dataset.valid;
+				let dataBirthdate = formBirthdate.dataset.valid;
+				let dataQuantity  = formQuantity.dataset.valid;
+				let dataLocation  = formLocation.dataset.valid;
+				let dataCheckbox  = formCheckbox.dataset.valid;
 
-				console.log(arrData);
+				//let arrData = [dataFirstname, dataLastname, dataMail, dataBirthdate, dataQuantity, dataLocation, dataCheckbox];
+
+				let arrData2 = [formFirstname, formLastname, formMail, formBirthdate, formQuantity, formLocation, formCheckbox];
 
 				let formConfirm = document.querySelector(" .form-confirm ");
 				let formModal = document.querySelector(" .form-modal ");
 
-				let conditionData = false;
-
-				if ( conditionData == false ) {
-
-					arrData.forEach(element => {
-
-						element.setAttribute("data-error-visible", true);
-
-						if ( element.dataset.valid == false || element.dataset.valid == undefined ) {
-							element.setAttribute("data-valid", false);
-							element.setAttribute("data-error", printMessage("error-submit"));
-						}
-						else if ( element.dataset.valid == true ) {
-							element.setAttribute("data-valid", true);
-							element.setAttribute("data-error", printMessage("valid"));
-						}
-						else {
-							console.log("Error on script");
-						}
-
-					});
-
+				function isDataValid() {
 					return true;
-
 				}
-				else {
 
+				let condition = arrValidation.every(isDataValid);
+
+
+				if ( arrValidation.length >= 7 && condition == true ) {
 					console.log("Done");
 
 					formConfirm.style.opacity = 1;
@@ -405,8 +402,26 @@
 
 					formModal.style.opacity = 0;
 					formModal.style.zIndex = 0;
-
 				}
+				else {
+					console.log('Error');
+
+					arrData2.forEach(element => {
+
+						element.setAttribute("data-error-visible", true);
+
+						if ( element == false || element == undefined ) {
+							element.setAttribute("data-valid", false);
+							element.setAttribute("data-error", printMessage("error-submit"));
+						}
+						else {
+							element.setAttribute("data-valid", true);
+							element.setAttribute("data-error", printMessage("valid"));
+						}
+
+					});
+				}
+
 			});
 		}
 
