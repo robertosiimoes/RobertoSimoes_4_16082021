@@ -4,32 +4,32 @@
 
 		/*** FORM DATA ***/
 
-			const formFirstname = document.querySelector(' .formData[data-input="firstname"] ');
-			const formLastname  = document.querySelector(' .formData[data-input="lastname"] ');
-			const formMail      = document.querySelector(' .formData[data-input="email"] ');
-			const formBirthdate = document.querySelector(' .formData[data-input="birthdate"] ');
-			const formQuantity  = document.querySelector(' .formData[data-input="quantity"] ');
-			const formLocation  = document.querySelector(' .formData[data-input="locations"] ');
-			const formCheckbox  = document.querySelector(' .formData[data-input="checkbox"] ');
+			let formFirstname = document.querySelector(' .formData[data-input="firstname"] ');
+			let formLastname  = document.querySelector(' .formData[data-input="lastname"] ');
+			let formMail      = document.querySelector(' .formData[data-input="email"] ');
+			let formBirthdate = document.querySelector(' .formData[data-input="birthdate"] ');
+			let formQuantity  = document.querySelector(' .formData[data-input="quantity"] ');
+			let formLocation  = document.querySelector(' .formData[data-input="locations"] ');
+			let formCheckbox  = document.querySelector(' .formData[data-input="checkbox"] ');
 
 		/*** FORM DATA ***/
 
 		/*** INPUTS AND BUTTONS ***/
 
-			const firstname = document.querySelector("#firstname");
-			const lastname  = document.querySelector("#lastname");
-			const mail      = document.querySelector("#email");
-			const birthdate = document.querySelector("#birthdate");
-			const quantity  = document.querySelector("#quantity");
+			let firstname = document.querySelector(' #firstname ');
+			let lastname  = document.querySelector(' #lastname ');
+			let mail      = document.querySelector(' #email ');
+			let birthdate = document.querySelector(' #birthdate ');
+			let quantity  = document.querySelector(' #quantity ');
 
 			// Getting all the inputs checkbox for locations
-			const locations = document.querySelectorAll(" .checkbox-input[name='location'] ");
+			let locations = document.querySelectorAll(' .checkbox-input[name="location"] ');
 
 			// Getting the checkboxs for agree and newsletter
-			const checkboxs = document.querySelectorAll(" .checkbox-input[type='checkbox'] ");
+			let checkboxs = document.querySelectorAll(' .checkbox-input[type="checkbox"] ');
 
 			// Buttons for submitting form
-			const btnSubmit = document.querySelector(" .btn-submit ");
+			let btnSubmit = document.querySelector(' .btn-submit ');
 		
 		/*** INPUTS AND BUTTONS ***/
 
@@ -39,7 +39,7 @@
 
 			const regMail = /(?:^|\s)[\w!#$%&'*+/=?^`{|}~-](\.?[\w!#$%&'*+/=?^`{|}~-]+)*@\w+[.-]?\w*\.[a-zA-Z]{2,3}\b/;
 
-			const regBirth = /^([0-2][0-9]|(3)[0-1])(-)(((0)[0-9])|((1)[0-2]))(-)\d{4}$/ ;
+			const regBirth = /^([0-2][0-9]|(3)[0-1])(-)(((0)[0-9])|((1)[0-2]))(-)\d{4}$/;
 
 		/*** REGEX ***/
 
@@ -67,7 +67,8 @@
 				"valid-checkbox" : "La case de validation des conditions d'utilisation est bien cochée",
 				"valid-newsletter" : "La case de newsletter a bien été cochée",
 				"invalid-newsletter" : "La case de newsletter a bien été decochée",
-				"error-script" : "Erreur de script"
+				"error-script" : "Erreur de script",
+				"error-submit" : "Veuillez remplir le champ correctement"
 			};
 
 			return messageToReturn[key];
@@ -87,26 +88,6 @@
 	/*** INITIALIZE FIELD ***/
 
 
-	/*** VERIFY STATE ***/
-
-		function verifyState(stateValue) {
-			let state = stateValue;
-
-			/** Returning the false state of the boolean **/
-			if (state == false) {
-				console.log(state, typeof state);
-				return state;
-			}
-			else {
-				state = true;
-				console.log(state, typeof state);
-				return state;
-			}
-		}
-
-	/*** VERIFY STATE ***/
-
-
 	/*** VERIFY IDENTITY ***/
 
 		function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
@@ -119,28 +100,23 @@
 
 			if ( isNaN( inputValue ) || inputValue === 0 ) {
 				formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
-				verifyState(false);
 			}
 			else if ( inputValue > 0 && inputValue < 2 ) {
 				formIdentity.setAttribute("data-error", printMessage("notvalid", textIdentity));
-				verifyState(false);
 			}
 			else if ( inputValue >= 2 ) {
 
 				if ( regIdentity.test(inputWord) ) {
 					formIdentity.setAttribute("data-error", printMessage("invalid"));
-					verifyState(false);
 				}
 				else {
 					formIdentity.setAttribute("data-error", printMessage("valid"));
 					formIdentity.setAttribute("data-valid", true);
 					inputIdentity.setAttribute("data-valid", true);
-					verifyState(true);
 				}
 			}
 			else {
 				formIdentity.setAttribute("data-error", printMessage("other"));
-				verifyState(false);
 			}
 		}
 
@@ -190,24 +166,20 @@
 
 				if ( isNaN( inputLength ) || inputLength === 0 ) {
 					formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
-					verifyState(false);
 				}
 				else if ( inputLength > 0 ) {
 
 					if ( !regMail.test(inputValue) ) {
 						formIdentity.setAttribute("data-error", printMessage("invalid-email"));
-						verifyState(false);
 					}
 					else {
 						formIdentity.setAttribute("data-error", printMessage("valid"));
 						formIdentity.setAttribute("data-valid", true);
 						inputIdentity.setAttribute("data-valid", true);
-						verifyState(true);
 					}
 				}
 				else {
 					formIdentity.setAttribute("data-error", printMessage("other"));
-					verifyState(false);
 				}
 
 			}, true);
@@ -230,7 +202,6 @@
 
 				if ( inputLength < 10 || inputLength > 10 ) {
 					formIdentity.setAttribute("data-error", printMessage("invalid-birthdate", textIdentity));
-					verifyState(false);
 				}
 				else if ( inputLength === 10 ) {
 
@@ -238,18 +209,15 @@
 
 					if ( regBirth.test(newBirthdate) == false ) {
 						formIdentity.setAttribute("data-error", printMessage("invalid-birthdate"));
-						verifyState(false);
 					}
 					else {
 						formIdentity.setAttribute("data-error", printMessage("valid"));
 						formIdentity.setAttribute("data-valid", true);
 						inputIdentity.setAttribute("data-valid", true);
-						verifyState(true);
 					}
 				}
 				else {
 					formIdentity.setAttribute("data-error", printMessage("other"));
-					verifyState(false);
 				}
 
 			}, true);
@@ -270,23 +238,19 @@
 	
 				initializeField(inputIdentity, textIdentity, formIdentity, "empty");
 	
-				if ( inputLength < 0 || isNaN(inputValue)  ) {
+				if ( inputLength < 0 || isNaN(inputValue) ) {
 					formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
-					verifyState(false);
 				}
 				else if ( inputValue > 99 ) {
 					formIdentity.setAttribute("data-error", printMessage("tohigh-quantity"));
-					verifyState(false);
 				}
 				else if ( 0 <= inputValue <= 99 ) {
 					formIdentity.setAttribute("data-error", printMessage("valid"));
 					formIdentity.setAttribute("data-valid", true);
 					inputIdentity.setAttribute("data-valid", true);
-					verifyState(true);
 				}
 				else {
 					formIdentity.setAttribute("data-error", printMessage("other"));
-					verifyState(false);
 				}
 
 			}, true);
@@ -311,12 +275,10 @@
 					if ( city !== undefined || city !== false || city !== null ) {
 						formIdentity.setAttribute("data-valid", true);
 						formIdentity.setAttribute("data-error", printMessage("valid-citys"));
-						verifyState(true);
 					}
 					else {
 						formIdentity.setAttribute("data-error-visible", true);
 						formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
-						verifyState(false);
 					}
 
 				}, true);
@@ -337,6 +299,7 @@
 				element.addEventListener("change", function(event) {
 
 					formIdentity.setAttribute("data-error-visible", true);
+					formIdentity.setAttribute("data-valid", false);
 
 					// Testing if the current checkbox is the legal checkbox
 					if ( element.getAttribute("id") == "checkbox1" ) {
@@ -344,13 +307,11 @@
 						if ( element.checked == true ) {
 							formIdentity.setAttribute("data-valid", true);
 							formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
-							verifyState(true);
 						}
 						else {
 							formIdentity.setAttribute("data-valid", false);
 							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
-							element.checked == false;
-							verifyState(false);
+							element.checked = false;
 						}
 					}
 
@@ -362,17 +323,14 @@
 							formIdentity.setAttribute("data-error", printMessage("valid-newsletter"));
 						}
 						else {
-							formIdentity.setAttribute("data-valid", false);
 							formIdentity.setAttribute("data-error", printMessage("invalid-newsletter"));
-							element.checked == false;
-							verifyState(false);
+							element.checked = false;
 						}
 					}
 
 					// Testing if you have error on script
 					else {
 						console.log( printMessage("error-script") );
-						verifyState(false);
 					}
 				}, true);
 
@@ -386,11 +344,11 @@
 	/*** VERIFY CALLS ***/
 
 		let verifFirstname = verifyFirstname(firstname, 'Prénom', formFirstname);
-		let verifLastname = verifyLastname(lastname, 'Nom', formLastname);
-		let verifMail = verifyMail(mail, 'Email', formMail);
-		let verifBirth = verifyBirthdate(birthdate, 'Date de naissance', formBirthdate);
-		let verifQuantity = verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity);
-		let verifCitys = verifyCitys(locations, "Villes" , formLocation);
+		let verifLastname  = verifyLastname(lastname, 'Nom', formLastname);
+		let verifMail      = verifyMail(mail, 'Email', formMail);
+		let verifBirth     = verifyBirthdate(birthdate, 'Date de naissance', formBirthdate);
+		let verifQuantity  = verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity);
+		let verifCitys     = verifyCitys(locations, 'Villes' , formLocation);
 		let verifCheckboxs = verifyCheckboxs(checkboxs, formCheckbox);
 
 	/*** VERIFY CALLS ***/
@@ -405,17 +363,49 @@
 				event.preventDefault();
 				event.stopPropagation();
 
-				let condition = verifFirstname && verifLastname && verifMail && verifBirth && verifQuantity && verifCitys && verifCheckboxs;
+				let arrData = [formFirstname, formLastname, formMail, formBirthdate, formQuantity, formLocation, formCheckbox];
 
-				if( condition ) {
-					console.log("All functions are true, let's go ! ");
-					console.log("Submit this form");
-					console.log(verifFirstname, verifLastname, verifMail, verifBirth, verifQuantity, verifCitys, verifCheckboxs);
+				console.log(arrData);
+
+				let formConfirm = document.querySelector(" .form-confirm ");
+				let formModal = document.querySelector(" .form-modal ");
+
+				let conditionData = false;
+
+				if ( conditionData == false ) {
+
+					arrData.forEach(element => {
+
+						element.setAttribute("data-error-visible", true);
+
+						if ( element.dataset.valid == false || element.dataset.valid == undefined ) {
+							element.setAttribute("data-valid", false);
+							element.setAttribute("data-error", printMessage("error-submit"));
+						}
+						else if ( element.dataset.valid == true ) {
+							element.setAttribute("data-valid", true);
+							element.setAttribute("data-error", printMessage("valid"));
+						}
+						else {
+							console.log("Error on script");
+						}
+
+					});
+
+					return true;
+
 				}
 				else {
-					console.log("Very bad ! An error as appeared !");
-					console.log("Don't submit this form");
-					console.log(verifFirstname, verifLastname, verifMail, verifBirth, verifQuantity, verifCitys, verifCheckboxs);
+
+					console.log("Done");
+
+					formConfirm.style.opacity = 1;
+					formConfirm.style.zIndex = 1;
+					formConfirm.style.display = "flex";
+
+					formModal.style.opacity = 0;
+					formModal.style.zIndex = 0;
+
 				}
 			});
 		}
