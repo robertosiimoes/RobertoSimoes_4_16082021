@@ -231,6 +231,7 @@
 
 		.bground {
 			background-color: var(--white);
+			height: auto;
 			max-height: calc(100% - 85px);
 		}
 
