@@ -4,6 +4,6 @@
 	openOrCloseModal();
 
 	// Submitting form
-	//formSubmit();
+	formSubmit();
 
 /*** FILE TO ORGANISE LAUNCH OF FUNCTIONS ***/

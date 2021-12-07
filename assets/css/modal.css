@@ -87,6 +87,7 @@
 	.modal-body {
 		padding: 15px 8%;
 		margin: 15px auto;
+		position: relative;
 	}
 
 	.close {
@@ -98,6 +99,7 @@
 		opacity: 1;
 		cursor: pointer;
 		transform: scale(0.7);
+		z-index: 999;
 	}
 
 	.close:before,

@@ -87,6 +87,26 @@
 	/*** INITIALIZE FIELD ***/
 
 
+	/*** VERIFY STATE ***/
+
+		function verifyState(stateValue) {
+			let state = stateValue;
+
+			/** Returning the false state of the boolean **/
+			if (state == false) {
+				console.log(state, typeof state);
+				return state;
+			}
+			else {
+				state = true;
+				console.log(state, typeof state);
+				return state;
+			}
+		}
+
+	/*** VERIFY STATE ***/
+
+
 	/*** VERIFY IDENTITY ***/
 
 		function verifyIdentity (inputIdentity, textIdentity, formIdentity) {
@@ -99,57 +119,98 @@
 
 			if ( isNaN( inputValue ) || inputValue === 0 ) {
 				formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+				verifyState(false);
 			}
 			else if ( inputValue > 0 && inputValue < 2 ) {
 				formIdentity.setAttribute("data-error", printMessage("notvalid", textIdentity));
+				verifyState(false);
 			}
 			else if ( inputValue >= 2 ) {
 
 				if ( regIdentity.test(inputWord) ) {
 					formIdentity.setAttribute("data-error", printMessage("invalid"));
+					verifyState(false);
 				}
 				else {
 					formIdentity.setAttribute("data-error", printMessage("valid"));
 					formIdentity.setAttribute("data-valid", true);
 					inputIdentity.setAttribute("data-valid", true);
-					return true;
+					verifyState(true);
 				}
 			}
 			else {
 				formIdentity.setAttribute("data-error", printMessage("other"));
+				verifyState(false);
 			}
 		}
 
 	/*** VERIFY IDENTITY ***/
 
 
+	/*** VERIFY FIRSTNAME ***/
+
+		function verifyFirstname(inputIdentity, textIdentity, formIdentity) {
+
+			firstname.addEventListener('input', function(event) {
+
+				verifyIdentity(inputIdentity, textIdentity, formIdentity);
+
+			}, true);
+
+		}
+
+	/*** VERIFY FIRSTNAME ***/
+
+
+	/*** VERIFY LASTNAME ***/
+
+		function verifyLastname(inputIdentity, textIdentity, formIdentity) {
+
+			lastname.addEventListener('input', function(event) {
+
+				verifyIdentity(inputIdentity, textIdentity, formIdentity);
+
+			}, true);
+
+		}
+
+	/*** VERIFY LASTNAME ***/
+
+
 	/*** VERIFY MAIL ***/
 
 		function verifyMail (inputIdentity, textIdentity, formIdentity) {
 
-			let inputLength = parseInt(inputIdentity.value.length);
-			let inputValue = inputIdentity.value;
+			mail.addEventListener('input', function(event) {
 
-			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+				let inputLength = parseInt(inputIdentity.value.length);
+				let inputValue = inputIdentity.value;
 
-			if ( isNaN( inputLength ) || inputLength === 0 ) {
-				formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
-			}
-			else if ( inputLength > 0 ) {
+				initializeField(inputIdentity, textIdentity, formIdentity, "empty");
 
-				if ( !regMail.test(inputValue) ) {
-					formIdentity.setAttribute("data-error", printMessage("invalid-email"));
+				if ( isNaN( inputLength ) || inputLength === 0 ) {
+					formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+					verifyState(false);
+				}
+				else if ( inputLength > 0 ) {
+
+					if ( !regMail.test(inputValue) ) {
+						formIdentity.setAttribute("data-error", printMessage("invalid-email"));
+						verifyState(false);
+					}
+					else {
+						formIdentity.setAttribute("data-error", printMessage("valid"));
+						formIdentity.setAttribute("data-valid", true);
+						inputIdentity.setAttribute("data-valid", true);
+						verifyState(true);
+					}
 				}
 				else {
-					formIdentity.setAttribute("data-error", printMessage("valid"));
-					formIdentity.setAttribute("data-valid", true);
-					inputIdentity.setAttribute("data-valid", true);
-					return true;
+					formIdentity.setAttribute("data-error", printMessage("other"));
+					verifyState(false);
 				}
-			}
-			else {
-				formIdentity.setAttribute("data-error", printMessage("other"));
-			}
+
+			}, true);
 		}
 
 	/*** VERIFY MAIL ***/
@@ -159,32 +220,39 @@
 
 		function verifyBirthdate (inputIdentity, textIdentity, formIdentity) {
 
-			let inputLength = inputIdentity.value.length;
-			let inputValue = inputIdentity.value;
+			birthdate.addEventListener('input', function(event) {
 
-			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
-			formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+				let inputLength = inputIdentity.value.length;
+				let inputValue = inputIdentity.value;
 
-			if ( inputLength < 10 || inputLength > 10 ) {
-				formIdentity.setAttribute("data-error", printMessage("invalid-birthdate", textIdentity));
-			}
-			else if ( inputLength === 10 ) {
+				initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+				formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
 
-				let newBirthdate = inputValue.split('-').reverse().join('-');
+				if ( inputLength < 10 || inputLength > 10 ) {
+					formIdentity.setAttribute("data-error", printMessage("invalid-birthdate", textIdentity));
+					verifyState(false);
+				}
+				else if ( inputLength === 10 ) {
 
-				if ( regBirth.test(newBirthdate) == false ) {
-					formIdentity.setAttribute("data-error", printMessage("invalid-birthdate"));
+					let newBirthdate = inputValue.split('-').reverse().join('-');
+
+					if ( regBirth.test(newBirthdate) == false ) {
+						formIdentity.setAttribute("data-error", printMessage("invalid-birthdate"));
+						verifyState(false);
+					}
+					else {
+						formIdentity.setAttribute("data-error", printMessage("valid"));
+						formIdentity.setAttribute("data-valid", true);
+						inputIdentity.setAttribute("data-valid", true);
+						verifyState(true);
+					}
 				}
 				else {
-					formIdentity.setAttribute("data-error", printMessage("valid"));
-					formIdentity.setAttribute("data-valid", true);
-					inputIdentity.setAttribute("data-valid", true);
-					return true;
+					formIdentity.setAttribute("data-error", printMessage("other"));
+					verifyState(false);
 				}
-			}
-			else {
-				formIdentity.setAttribute("data-error", printMessage("other"));
-			}
+
+			}, true);
 			
 		}
 
@@ -195,26 +263,33 @@
 	
 		function verifyQuantityTournaments (inputIdentity, textIdentity, formIdentity) {
 
-			let inputLength = inputIdentity.value.length;
-			let inputValue = parseInt(inputIdentity.value.trim());
+			quantity.addEventListener('input', function(event) {
 
-			initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+				let inputLength = inputIdentity.value.length;
+				let inputValue = parseInt(inputIdentity.value.trim());
+	
+				initializeField(inputIdentity, textIdentity, formIdentity, "empty");
+	
+				if ( inputLength < 0 || isNaN(inputValue)  ) {
+					formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
+					verifyState(false);
+				}
+				else if ( inputValue > 99 ) {
+					formIdentity.setAttribute("data-error", printMessage("tohigh-quantity"));
+					verifyState(false);
+				}
+				else if ( 0 <= inputValue <= 99 ) {
+					formIdentity.setAttribute("data-error", printMessage("valid"));
+					formIdentity.setAttribute("data-valid", true);
+					inputIdentity.setAttribute("data-valid", true);
+					verifyState(true);
+				}
+				else {
+					formIdentity.setAttribute("data-error", printMessage("other"));
+					verifyState(false);
+				}
 
-			if ( inputLength < 0 || isNaN(inputValue)  ) {
-				formIdentity.setAttribute("data-error", printMessage("empty", textIdentity));
-			}
-			else if ( inputValue > 99 ) {
-				formIdentity.setAttribute("data-error", printMessage("tohigh-quantity"));
-			}
-			else if ( 0 <= inputValue <= 99 ) {
-				formIdentity.setAttribute("data-error", printMessage("valid"));
-				formIdentity.setAttribute("data-valid", true);
-				inputIdentity.setAttribute("data-valid", true);
-				return true;
-			}
-			else {
-				formIdentity.setAttribute("data-error", printMessage("other"));
-			}
+			}, true);
 
 		}
 
@@ -236,14 +311,15 @@
 					if ( city !== undefined || city !== false || city !== null ) {
 						formIdentity.setAttribute("data-valid", true);
 						formIdentity.setAttribute("data-error", printMessage("valid-citys"));
-						return true;
+						verifyState(true);
 					}
 					else {
 						formIdentity.setAttribute("data-error-visible", true);
 						formIdentity.setAttribute("data-error", printMessage("invalid-citys", textIdentity));
+						verifyState(false);
 					}
 
-				});
+				}, true);
 
 			});
 			
@@ -268,12 +344,13 @@
 						if ( element.checked == true ) {
 							formIdentity.setAttribute("data-valid", true);
 							formIdentity.setAttribute("data-error", printMessage("valid-checkbox"));
-							return true;
+							verifyState(true);
 						}
 						else {
 							formIdentity.setAttribute("data-valid", false);
 							formIdentity.setAttribute("data-error", printMessage("invalid-checkbox"));
 							element.checked == false;
+							verifyState(false);
 						}
 					}
 
@@ -288,14 +365,16 @@
 							formIdentity.setAttribute("data-valid", false);
 							formIdentity.setAttribute("data-error", printMessage("invalid-newsletter"));
 							element.checked == false;
+							verifyState(false);
 						}
 					}
 
 					// Testing if you have error on script
 					else {
 						console.log( printMessage("error-script") );
+						verifyState(false);
 					}
-				});
+				}, true);
 
 			});
 
@@ -304,32 +383,15 @@
 	/*** VERIFY CHECKBOXS ***/
 
 
-	/*** CALLS ***/
-
-		let verifFirstname = firstname.addEventListener('input', function(){ verifyIdentity(firstname, 'Prénom', formFirstname) } );
-		let verifLastname = lastname.addEventListener('input', function(){ verifyIdentity(lastname, 'Nom', formLastname) } );
-		let verifMail = mail.addEventListener('input', function(){ verifyMail(mail, 'Email', formMail) } );
-		let verifBirth = birthdate.addEventListener('input', function(){ verifyBirthdate(birthdate, 'Date de naissance', formBirthdate) } );
-		let verifQuantity = quantity.addEventListener('input', function(){ verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity) } );
-		let verifCitys = verifyCitys(locations, "Villes" , formLocation);
-		let verifCheckboxs = verifyCheckboxs(checkboxs, formCheckbox);
-
-	/*** CALLS ***/
-
-
 	/*** VERIFY CALLS ***/
 
-		function verifyCalls() {
-
-			if( verifFirstname == true && verifLastname == true && verifMail == true && verifBirth == true && verifQuantity == true && verifCitys == true && verifCheckboxs == true ) {
-				console.log("All functions are true, let's go ! ");
-				return true;
-			}
-			else {
-				console.log("Very bad ! An error as appeared !");
-				return false;
-			}
-		}
+		let verifFirstname = verifyFirstname(firstname, 'Prénom', formFirstname);
+		let verifLastname = verifyLastname(lastname, 'Nom', formLastname);
+		let verifMail = verifyMail(mail, 'Email', formMail);
+		let verifBirth = verifyBirthdate(birthdate, 'Date de naissance', formBirthdate);
+		let verifQuantity = verifyQuantityTournaments(quantity, 'Nombre de tournois', formQuantity);
+		let verifCitys = verifyCitys(locations, "Villes" , formLocation);
+		let verifCheckboxs = verifyCheckboxs(checkboxs, formCheckbox);
 
 	/*** VERIFY CALLS ***/
 
@@ -343,21 +405,22 @@
 				event.preventDefault();
 				event.stopPropagation();
 
-				let calls = verifyCalls();
+				let condition = verifFirstname && verifLastname && verifMail && verifBirth && verifQuantity && verifCitys && verifCheckboxs;
 
-				//console.log(calls);
-
-				if ( calls == true ) {
+				if( condition ) {
+					console.log("All functions are true, let's go ! ");
 					console.log("Submit this form");
+					console.log(verifFirstname, verifLastname, verifMail, verifBirth, verifQuantity, verifCitys, verifCheckboxs);
 				}
 				else {
+					console.log("Very bad ! An error as appeared !");
 					console.log("Don't submit this form");
+					console.log(verifFirstname, verifLastname, verifMail, verifBirth, verifQuantity, verifCitys, verifCheckboxs);
 				}
 			});
 		}
 
 	/*** VERIFY FORM SUBMISSION  ***/
 
-	formSubmit();
 
 /*** VALIDATE FORM MODAL ***/
