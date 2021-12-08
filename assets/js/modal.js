@@ -4,6 +4,7 @@
 	const modalContainer = document.querySelector(".bground");
 	const modalBtnOpen = document.querySelectorAll(".modal-btn");
 	const modalBtnClose = document.querySelector(".content .close");
+	const modalBtnCloseInside = document.querySelectorAll(".btn-close");
 
 
 	// VARIABLES
@@ -29,6 +30,7 @@
 		
 		if (toggleModal) {
 			modalBtnClose.forEach( (btn) => btn.addEventListener("click", closeModal) );
+			modalBtnCloseInside.forEach( (btn) => btn.addEventListener("click", closeModal) );
 		} else {
 			modalBtnOpen.forEach( (btn) => btn.addEventListener("click", launchModal) );
 			toggleModal = !toggleModal;
